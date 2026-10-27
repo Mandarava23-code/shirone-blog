@@ -50,7 +50,6 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:handshake-outline-rounded",
         pageKey: "friends",
     },
-    /*
     Moments: {
         name: i18n(I18nKey.moments),
         url: "/moments/",
@@ -63,7 +62,6 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:live-tv-outline-rounded",
         pageKey: "anime",
     },
-    */
     Compass: {
         name: i18n(I18nKey.compass),
         url: "/compass/",
@@ -76,7 +74,6 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:workspaces-outline-rounded",
         pageKey: "skills",
     },
-    /*
     Projects: {
         name: i18n(I18nKey.projects),
         url: "/projects/",
@@ -89,7 +86,6 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:devices-rounded",
         pageKey: "devices",
     },
-    */
     Games: {
         name: i18n(I18nKey.games),
         url: "/games/",
@@ -146,17 +142,17 @@ const defaultNavBarConfig: NavBarConfig = {
         LinkPresets.Home,
         LinkPresets.Archive,
         LinkPresets.Friends,
-        LinkPresets.Moments,
-        LinkPresets.Anime,
-        LinkPresets.Compass,
+        //LinkPresets.Moments,
+        //LinkPresets.Anime,
         LinkPresets.Albums,
+        LinkPresets.Compass,
+        LinkPresets.Timeline,
         {
             name: i18n(I18nKey.more),
             icon: "material-symbols:apps-rounded",
             children: [
-                LinkPresets.Timeline,
-                LinkPresets.Projects,
-                LinkPresets.Devices,
+                //LinkPresets.Projects,
+                //LinkPresets.Devices,
                 LinkPresets.Games,
                 LinkPresets.Skills,
                 // 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
@@ -164,9 +160,9 @@ const defaultNavBarConfig: NavBarConfig = {
                 // LinkPresets.Categories,
                 // LinkPresets.Tags,
                 LinkPresets.About,
-                LinkPresets.GitHub,
             ],
         },
+        LinkPresets.GitHub,
     ],
 };
 
