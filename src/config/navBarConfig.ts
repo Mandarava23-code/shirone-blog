@@ -13,10 +13,10 @@ import { seriesConfig } from "@/config/seriesConfig";
 import { skillsConfig } from "@/config/skillsConfig";
 import { timelineConfig } from "@/config/timelineConfig";
 import type {
-	NavBarConfig,
-	NavBarConfigOverride,
-	NavBarLink,
-	NavBarLinkOverride,
+    NavBarConfig,
+    NavBarConfigOverride,
+    NavBarLink,
+    NavBarLinkOverride,
 } from "@/types/navBarConfig";
 import { getUserConfig } from "../utils/config-overlay.ts";
 import { pruneUnavailableNavLinks } from "../utils/nav-utils.ts";
@@ -32,148 +32,152 @@ import { pruneUnavailableNavLinks } from "../utils/nav-utils.ts";
  * 无论哪种来源，指向已关闭功能页面的入口都会在 `navBarConfig` 处被裁掉。
  */
 export const LinkPresets: Record<string, NavBarLink> = {
-	Home: {
-		name: i18n(I18nKey.home),
-		url: "/",
-		icon: "material-symbols:home-outline-rounded",
-		pageKey: "home",
-	},
-	Archive: {
-		name: i18n(I18nKey.archive),
-		url: "/archive/",
-		icon: "material-symbols:archive-outline-rounded",
-		pageKey: "archive",
-	},
-	Friends: {
-		name: i18n(I18nKey.friends),
-		url: "/friends/",
-		icon: "material-symbols:handshake-outline-rounded",
-		pageKey: "friends",
-	},
-	Moments: {
-		name: i18n(I18nKey.moments),
-		url: "/moments/",
-		icon: "material-symbols:auto-awesome-outline-rounded",
-		pageKey: "moments",
-	},
-	Anime: {
-		name: i18n(I18nKey.anime),
-		url: "/anime/",
-		icon: "material-symbols:live-tv-outline-rounded",
-		pageKey: "anime",
-	},
-	Compass: {
-		name: i18n(I18nKey.compass),
-		url: "/compass/",
-		icon: "material-symbols:explore-rounded",
-		pageKey: "compass",
-	},
-	Skills: {
-		name: i18n(I18nKey.skills),
-		url: "/skills/",
-		icon: "material-symbols:workspaces-outline-rounded",
-		pageKey: "skills",
-	},
-	Projects: {
-		name: i18n(I18nKey.projects),
-		url: "/projects/",
-		icon: "material-symbols:deployed-code-outline-rounded",
-		pageKey: "projects",
-	},
-	Devices: {
-		name: i18n(I18nKey.devices),
-		url: "/devices/",
-		icon: "material-symbols:devices-rounded",
-		pageKey: "devices",
-	},
-	Games: {
-		name: i18n(I18nKey.games),
-		url: "/games/",
-		icon: "material-symbols:sports-esports-outline-rounded",
-		pageKey: "games",
-	},
-	Timeline: {
-		name: i18n(I18nKey.timeline),
-		url: "/timeline/",
-		icon: "material-symbols:timeline-rounded",
-		pageKey: "timeline",
-	},
-	Albums: {
-		name: i18n(I18nKey.albums),
-		url: "/albums/",
-		icon: "material-symbols:photo-library-outline-rounded",
-		pageKey: "albums",
-	},
-	Categories: {
-		name: i18n(I18nKey.categories),
-		url: "/categories/",
-		icon: "material-symbols:folder-outline-rounded",
-		pageKey: "categories",
-	},
-	Tags: {
-		name: i18n(I18nKey.tags),
-		url: "/tags/",
-		icon: "material-symbols:tag-rounded",
-		pageKey: "tags",
-	},
-	Series: {
-		name: i18n(I18nKey.series),
-		url: "/series/",
-		icon: "material-symbols:auto-stories-outline-rounded",
-		pageKey: "series",
-	},
-	About: {
-		name: i18n(I18nKey.about),
-		url: "/about/",
-		icon: "material-symbols:info-outline-rounded",
-		pageKey: "about",
-	},
-	GitHub: {
-		name: "GitHub",
-		url: "https://github.com/LyraVoid/Shirone",
-		icon: "fa7-brands:github",
-		external: true,
-		pageKey: "github",
-	},
+    Home: {
+        name: i18n(I18nKey.home),
+        url: "/",
+        icon: "material-symbols:home-outline-rounded",
+        pageKey: "home",
+    },
+    Archive: {
+        name: i18n(I18nKey.archive),
+        url: "/archive/",
+        icon: "material-symbols:archive-outline-rounded",
+        pageKey: "archive",
+    },
+    Friends: {
+        name: i18n(I18nKey.friends),
+        url: "/friends/",
+        icon: "material-symbols:handshake-outline-rounded",
+        pageKey: "friends",
+    },
+    /*
+    Moments: {
+        name: i18n(I18nKey.moments),
+        url: "/moments/",
+        icon: "material-symbols:auto-awesome-outline-rounded",
+        pageKey: "moments",
+    },
+    Anime: {
+        name: i18n(I18nKey.anime),
+        url: "/anime/",
+        icon: "material-symbols:live-tv-outline-rounded",
+        pageKey: "anime",
+    },
+    */
+    Compass: {
+        name: i18n(I18nKey.compass),
+        url: "/compass/",
+        icon: "material-symbols:explore-rounded",
+        pageKey: "compass",
+    },
+    Skills: {
+        name: i18n(I18nKey.skills),
+        url: "/skills/",
+        icon: "material-symbols:workspaces-outline-rounded",
+        pageKey: "skills",
+    },
+    /*
+    Projects: {
+        name: i18n(I18nKey.projects),
+        url: "/projects/",
+        icon: "material-symbols:deployed-code-outline-rounded",
+        pageKey: "projects",
+    },
+    Devices: {
+        name: i18n(I18nKey.devices),
+        url: "/devices/",
+        icon: "material-symbols:devices-rounded",
+        pageKey: "devices",
+    },
+    */
+    Games: {
+        name: i18n(I18nKey.games),
+        url: "/games/",
+        icon: "material-symbols:sports-esports-outline-rounded",
+        pageKey: "games",
+    },
+    Timeline: {
+        name: i18n(I18nKey.timeline),
+        url: "/timeline/",
+        icon: "material-symbols:timeline-rounded",
+        pageKey: "timeline",
+    },
+    Albums: {
+        name: i18n(I18nKey.albums),
+        url: "/albums/",
+        icon: "material-symbols:photo-library-outline-rounded",
+        pageKey: "albums",
+    },
+    Categories: {
+        name: i18n(I18nKey.categories),
+        url: "/categories/",
+        icon: "material-symbols:folder-outline-rounded",
+        pageKey: "categories",
+    },
+    Tags: {
+        name: i18n(I18nKey.tags),
+        url: "/tags/",
+        icon: "material-symbols:tag-rounded",
+        pageKey: "tags",
+    },
+    Series: {
+        name: i18n(I18nKey.series),
+        url: "/series/",
+        icon: "material-symbols:auto-stories-outline-rounded",
+        pageKey: "series",
+    },
+    About: {
+        name: i18n(I18nKey.about),
+        url: "/about/",
+        icon: "material-symbols:info-outline-rounded",
+        pageKey: "about",
+    },
+    GitHub: {
+        name: "GitHub",
+        url: "https://github.com/Mandarava23-code/shirone-blog",
+        icon: "fa7-brands:github",
+        external: true,
+        pageKey: "github",
+    },
 };
 
 const defaultNavBarConfig: NavBarConfig = {
-	links: [
-		LinkPresets.Home,
-		LinkPresets.Archive,
-		LinkPresets.Friends,
-		LinkPresets.Moments,
-		LinkPresets.Anime,
-		LinkPresets.Compass,
-		LinkPresets.Albums,
-		{
-			name: i18n(I18nKey.more),
-			icon: "material-symbols:apps-rounded",
-			children: [
-				LinkPresets.Timeline,
-				LinkPresets.Projects,
-				LinkPresets.Devices,
-				LinkPresets.Games,
-				LinkPresets.Skills,
-				// 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
-				// 需要时取消注释即可
-				// LinkPresets.Categories,
-				// LinkPresets.Tags,
-				LinkPresets.About,
-				LinkPresets.GitHub,
-			],
-		},
-	],
+    links: [
+        LinkPresets.Home,
+        LinkPresets.Archive,
+        LinkPresets.Friends,
+        LinkPresets.Moments,
+        LinkPresets.Anime,
+        LinkPresets.Compass,
+        LinkPresets.Albums,
+        {
+            name: i18n(I18nKey.more),
+            icon: "material-symbols:apps-rounded",
+            children: [
+                LinkPresets.Timeline,
+                LinkPresets.Projects,
+                LinkPresets.Devices,
+                LinkPresets.Games,
+                LinkPresets.Skills,
+                // 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
+                // 需要时取消注释即可
+                // LinkPresets.Categories,
+                // LinkPresets.Tags,
+                LinkPresets.About,
+                LinkPresets.GitHub,
+            ],
+        },
+    ],
 };
 
 import { resolveI18nText } from "../utils/i18n-utils.ts";
 
 function fail(message: string): never {
-	throw new Error(`[config] nav-bar：${message}`);
+    throw new Error(`[config] nav-bar：${message}`);
 }
 
 function resolveName(name: string): string {
-	return resolveI18nText(name);
+    return resolveI18nText(name);
 }
 
 /**
@@ -183,18 +187,18 @@ function resolveName(name: string): string {
  * 关闭判定只看配置，与导航结构无关，因此默认结构与内容仓声明式条目共用同一张表。
  */
 const unavailableFeatureRoutes: ReadonlySet<string> = new Set([
-	...(friendsConfig.enable ? [] : ["/friends"]),
-	...(momentsConfig.enable ? [] : ["/moments"]),
-	...(animeConfig.enable ? [] : ["/anime"]),
-	...(compassConfig.enable ? [] : ["/compass"]),
-	...(albumsConfig.enable ? [] : ["/albums"]),
-	...(skillsConfig.enable ? [] : ["/skills"]),
-	...(projectsConfig.enable ? [] : ["/projects"]),
-	...(devicesConfig.enable ? [] : ["/devices"]),
-	...(gamesConfig.enable ? [] : ["/games"]),
-	...(timelineConfig.enable ? [] : ["/timeline"]),
-	...(aboutConfig.enable ? [] : ["/about"]),
-	...(seriesConfig.enable ? [] : ["/series"]),
+    ...(friendsConfig.enable ? [] : ["/friends"]),
+    ...(momentsConfig.enable ? [] : ["/moments"]),
+    ...(animeConfig.enable ? [] : ["/anime"]),
+    ...(compassConfig.enable ? [] : ["/compass"]),
+    ...(albumsConfig.enable ? [] : ["/albums"]),
+    ...(skillsConfig.enable ? [] : ["/skills"]),
+    ...(projectsConfig.enable ? [] : ["/projects"]),
+    ...(devicesConfig.enable ? [] : ["/devices"]),
+    ...(gamesConfig.enable ? [] : ["/games"]),
+    ...(timelineConfig.enable ? [] : ["/timeline"]),
+    ...(aboutConfig.enable ? [] : ["/about"]),
+    ...(seriesConfig.enable ? [] : ["/series"]),
 ]);
 
 /**
@@ -204,39 +208,41 @@ const unavailableFeatureRoutes: ReadonlySet<string> = new Set([
  * 生成期的 Node 脚本受路径别名所限读不到），因此错误在构建加载配置时抛出。
  */
 export function resolveNavBarLinks(
-	entries: readonly NavBarLinkOverride[],
-	presets: Record<string, NavBarLink> = LinkPresets,
+    entries: readonly NavBarLinkOverride[],
+    presets: Record<string, NavBarLink> = LinkPresets,
 ): NavBarLink[] {
-	return entries.map((entry) => {
-		let base: NavBarLink | null = null;
-		if (entry.preset !== undefined) {
-			base = presets[entry.preset] ?? null;
-			if (!base) {
-				fail(
-					`未知的预设 "${entry.preset}"。可用预设：${Object.keys(presets).join("、")}。`,
-				);
-			}
-		}
+    return entries.map((entry) => {
+        let base: NavBarLink | null = null;
+        if (entry.preset !== undefined) {
+            base = presets[entry.preset] ?? null;
+            if (!base) {
+                fail(
+                    `未知的预设 "${entry.preset}"。可用预设：${Object.keys(presets).join("、")}。`,
+                );
+            }
+        }
 
-		const name =
-			entry.name !== undefined ? resolveName(entry.name) : base?.name;
-		if (name === undefined) {
-			fail("每个条目都需要 name，或用 preset 引用一个内置预设。");
-		}
+        const name =
+            entry.name !== undefined ? resolveName(entry.name) : base?.name;
+        if (name === undefined) {
+            fail("每个条目都需要 name，或用 preset 引用一个内置预设。");
+        }
 
-		// 未声明 children 时沿用预设自带的子菜单（已由 ...base 带入）。
-		return {
-			...base,
-			name,
-			...(entry.url !== undefined ? { url: entry.url } : {}),
-			...(entry.icon !== undefined ? { icon: entry.icon } : {}),
-			...(entry.pageKey !== undefined ? { pageKey: entry.pageKey } : {}),
-			...(entry.external !== undefined ? { external: entry.external } : {}),
-			...(entry.children
-				? { children: resolveNavBarLinks(entry.children, presets) }
-				: {}),
-		};
-	});
+        // 未声明 children 时沿用预设自带的子菜单（已由 ...base 带入）。
+        return {
+            ...base,
+            name,
+            ...(entry.url !== undefined ? { url: entry.url } : {}),
+            ...(entry.icon !== undefined ? { icon: entry.icon } : {}),
+            ...(entry.pageKey !== undefined ? { pageKey: entry.pageKey } : {}),
+            ...(entry.external !== undefined
+                ? { external: entry.external }
+                : {}),
+            ...(entry.children
+                ? { children: resolveNavBarLinks(entry.children, presets) }
+                : {}),
+        };
+    });
 }
 
 const userNavBar = getUserConfig("navBar") as NavBarConfigOverride | undefined;
@@ -249,10 +255,10 @@ const userNavBar = getUserConfig("navBar") as NavBarConfigOverride | undefined;
  * 不会留下点进去 404 的死链。
  */
 export const navBarConfig: NavBarConfig = {
-	links: pruneUnavailableNavLinks(
-		resolveNavBarLinks(
-			userNavBar ? userNavBar.links : defaultNavBarConfig.links,
-		),
-		unavailableFeatureRoutes,
-	),
+    links: pruneUnavailableNavLinks(
+        resolveNavBarLinks(
+            userNavBar ? userNavBar.links : defaultNavBarConfig.links,
+        ),
+        unavailableFeatureRoutes,
+    ),
 };

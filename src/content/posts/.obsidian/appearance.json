@@ -1,0 +1,13 @@
+{
+  "theme": "obsidian",
+  "accentColor": "",
+  "baseFontSizeAction": true,
+  "baseFontSize": 22,
+  "cssTheme": "Blue Topaz",
+  "interfaceFontFamily": "SF Pro",
+  "textFontFamily": "iA Writer Mono V Regular",
+  "monospaceFontFamily": "JetBrains Mono",
+  "nativeMenus": false,
+  "showViewHeader": true,
+  "showRibbon": false
+}
