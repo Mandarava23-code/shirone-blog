@@ -23,7 +23,7 @@
 | 首页 | `/` | Navbar + SideBar + PostCard 列表 + Footer |
 | 归档 | `/archive/` | ArchivePanel（ArchiveList 时间轴） |
 | 关于 | `/about/` | Card + Markdown（含 GitHub 卡片） |
-| 文章页 | `/posts/guide/` | 标题 AccentBar + PostMeta + 正文 + prev/next |
+| 文章页 | `/posts/guide/`（由 `tests/fixtures/content` 在测试期间物化） | 标题 AccentBar + PostMeta + 正文 + prev/next |
 
 ---
 

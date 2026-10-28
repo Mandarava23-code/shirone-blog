@@ -7,8 +7,15 @@ import { defineConfig } from "@playwright/test";
  */
 export default defineConfig({
 	testDir: "./tests",
+	// Playwright specs are `.spec.ts`; `tests/**/*.test.mjs` are node:test files
+	// run by `node --test` and must not be collected as Playwright tests.
+	testMatch: "**/*.spec.ts",
 	timeout: 30_000,
 	expect: { timeout: 5_000 },
+	// Sample posts/series live under tests/fixtures/content and are copied into
+	// src/content only while the suite runs; teardown removes them again.
+	globalSetup: "./tests/fixtures/setup-content.ts",
+	globalTeardown: "./tests/fixtures/teardown-content.ts",
 	// 截图命名去掉平台/项目后缀（-win32），且随 spec 文件旁存放
 	snapshotPathTemplate:
 		"{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}",

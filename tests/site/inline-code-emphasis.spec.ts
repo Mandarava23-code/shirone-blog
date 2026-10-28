@@ -1,6 +1,4 @@
-import { expect, test } from "@playwright/test";
-
-const POST_PATH = "/posts/expressive-code/";
+import { expect, test } from "../fixtures/typography";
 
 /**
  * Inline code must keep the emphasis the author wrote.
@@ -18,18 +16,19 @@ const POST_PATH = "/posts/expressive-code/";
 for (const navigation of ["direct", "swup"] as const) {
 	test(`inline code keeps author emphasis in prose and tables (${navigation})`, async ({
 		page,
+		codePostPath,
 	}) => {
 		await page.emulateMedia({ reducedMotion: "reduce" });
 
 		if (navigation === "direct") {
-			await page.goto(POST_PATH, { waitUntil: "load" });
+			await page.goto(codePostPath, { waitUntil: "load" });
 		} else {
 			await page.goto("/");
 			await page.waitForFunction(() => Boolean(window.swup));
 			await page.evaluate((path) => {
 				window.swup?.navigate(path);
-			}, POST_PATH);
-			await expect(page).toHaveURL(/\/posts\/expressive-code\//);
+			}, codePostPath);
+			await expect(page).toHaveURL(new URL(codePostPath, page.url()).href);
 		}
 
 		await page.waitForFunction(() =>

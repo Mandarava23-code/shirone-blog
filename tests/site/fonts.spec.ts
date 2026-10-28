@@ -1,11 +1,12 @@
-import { expect, test } from "@playwright/test";
-
-const CODE_POST_PATH = "/posts/expressive-code/";
+import { expect, test } from "../fixtures/typography";
 
 test("code blocks resolve the configured mono font family", async ({
 	page,
+	codePostPath,
 }) => {
-	await page.goto(CODE_POST_PATH, { waitUntil: "networkidle" });
+	await page.emulateMedia({ reducedMotion: "reduce" });
+	await page.goto(codePostPath, { waitUntil: "load" });
+	await expect(page.locator(".expressive-code pre").first()).toBeVisible();
 	await page.waitForFunction(() =>
 		document.documentElement.style
 			.getPropertyValue("--mc-primary")

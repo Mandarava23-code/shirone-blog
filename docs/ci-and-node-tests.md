@@ -39,3 +39,46 @@ Reproduce the failed step locally with the same Node major version and command. 
 - Review `git diff` and confirm locale files contain only required import or formatting changes.
 - Stage paths explicitly. Never use `git add -A`, which can include `Shirone-Content/`, temporary fixtures, or build output.
 - Use a conventional commit such as `fix(markdown): support direct Node markdown tests`.
+
+## Sample content fixtures
+
+The blog does not publish the upstream sample articles, but most site specs still
+navigate to their stable routes (`/posts/guide/`, `/series/markdown-syntax-guide/`,
+and so on). Those articles, series, and include snippets live under
+`tests/fixtures/content/` and are materialized by `tests/fixtures/setup-content.ts`
+before the suite runs; `tests/fixtures/teardown-content.ts` removes exactly the
+entries it created.
+
+- Existing files are never overwritten, so a real post with the same slug wins.
+- The marker `src/content/.playwright-content-fixtures.json` records what to remove and
+  is ignored by Git. Materialized content is removed at teardown; if a run crashes, the
+  files stay visible in `git status` (a later run still cleans them through the marker).
+- If a run is forcibly terminated, the next run cleans the recorded leftovers before
+  copying again. Deleting `src/content/.playwright-content-fixtures.json` is safe when
+  no Playwright process is running.
+- Fixtures are never part of `pnpm build`: teardown removes them when the suite ends.
+
+When removing sample articles permanently, move them out of `src/content/` and into
+`tests/fixtures/content/` instead of deleting the routes the suite depends on. Also
+remove their paths from the Markdown manifest's `docs` arrays; keep existing
+documentation references and syntax entries, and use `docs: []` when no separate
+usage document remains. The manifest validator continues to check every declared path.
+
+## Style regression fixtures
+
+The font and inline-code emphasis tests use `tests/fixtures/typography.md`,
+independently of the blog's published posts. The shared Playwright fixture creates
+a uniquely named draft under `src/content/posts/`, waits for Astro to serve it,
+and removes it during worker teardown. It uses the existing Playwright web server
+and covers both direct loads and Swup navigation.
+
+Temporary files match `src/content/posts/playwright-typography-*.md` and are
+ignored by Git. If a test process is forcibly terminated, remove only those
+temporary files before the next run. They are drafts and are excluded from
+production post routes.
+
+Run the CI style fragment with:
+
+```powershell
+pnpm.cmd exec playwright test tests/site/fonts.spec.ts tests/site/inline-code-emphasis.spec.ts
+```

@@ -22,7 +22,7 @@ const projectImages = import.meta.glob<ImageMetadata>(
  * Look up an image by the same `(basePath, src)` pair the components use.
  *
  * The components build their keys relative to `src/`, so `basePath` for a post
- * in package mode looks like `../shirones/content/posts/guide`. Joining it onto
+ * in package mode looks like `../shirones/content/posts/<slug>`. Joining it onto
  * `src` and normalising gives the project-root-relative key.
  */
 export function getProjectImageLoader(

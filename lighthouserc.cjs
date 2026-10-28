@@ -9,8 +9,8 @@ module.exports = {
 				"http://127.0.0.1:4321/archive/",
 				"http://127.0.0.1:4321/moments/",
 				"http://127.0.0.1:4321/about/",
-				"http://127.0.0.1:4321/posts/guide/",
-				"http://127.0.0.1:4321/posts/mdx-showcase/",
+				"http://127.0.0.1:4321/series/",
+				"http://127.0.0.1:4321/categories/",
 			],
 			numberOfRuns: 3,
 			settings: {
