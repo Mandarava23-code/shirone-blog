@@ -47,7 +47,8 @@ navigate to their stable routes (`/posts/guide/`, `/series/markdown-syntax-guide
 and so on). Those articles, series, and include snippets live under
 `tests/fixtures/content/` and are materialized by `tests/fixtures/setup-content.ts`
 before the suite runs; `tests/fixtures/teardown-content.ts` removes exactly the
-entries it created.
+entries it created. The node include tests read the snippet straight from
+`tests/fixtures/content/snippets/`, so they do not depend on materialization.
 
 - Existing files are never overwritten, so a real post with the same slug wins.
 - The marker `src/content/.playwright-content-fixtures.json` records what to remove and

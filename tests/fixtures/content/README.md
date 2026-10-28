@@ -1,7 +1,7 @@
 # Playwright content fixtures
 
-These files are the upstream sample articles, series, and include snippets that
-the site spec suite navigates to (`/posts/guide/`, `/posts/admonitions/`,
+These files are the upstream sample articles, series, and include snippet that the
+site spec suite navigates to (`/posts/guide/`, `/posts/admonitions/`,
 `/series/markdown-syntax-guide/`, and so on). They are **not** published by the
 blog: `src/content/posts`, `src/content/series`, and `src/content/snippets` are
 kept free of sample content.

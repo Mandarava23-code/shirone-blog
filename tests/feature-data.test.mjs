@@ -25,39 +25,55 @@ describe("Feature Data & Resolver Tests", () => {
 	});
 
 	it("resolveProjectsData applies disabledKeys correctly", () => {
-		const config = {
-			enable: true,
-			categories: [],
-			disabledKeys: ["folkpatch"],
-		};
-		const resolved = resolveProjectsData(config);
-		assert.ok(resolved.some((p) => p.key === "shirone"));
-		assert.ok(resolved.some((p) => p.key === "kernelpatch"));
-		assert.ok(!resolved.some((p) => p.key === "folkpatch"));
+		const items = [
+			{ key: "keep", name: "Keep" },
+			{ key: "drop", name: "Drop" },
+		];
+		const resolved = resolveProjectsData(
+			{ enable: true, categories: [], disabledKeys: ["drop"] },
+			items,
+		);
+		assert.deepEqual(
+			resolved.map((project) => project.key),
+			["keep"],
+		);
 	});
 
 	it("resolveSkillsData applies disabledNames correctly", () => {
-		const config = {
-			enable: true,
-			categories: [],
-			disabledNames: ["PHP"],
-		};
-		const resolved = resolveSkillsData(config);
-		assert.ok(resolved.some((s) => s.name === "TypeScript"));
-		assert.ok(!resolved.some((s) => s.name === "PHP"));
+		const items = [
+			{ name: "TypeScript" },
+			{ name: "PHP" },
+			{ name: "Rust" },
+		];
+		const resolved = resolveSkillsData(
+			{ enable: true, categories: [], disabledNames: ["PHP"] },
+			items,
+		);
+		assert.deepEqual(
+			resolved.map((skill) => skill.name),
+			["TypeScript", "Rust"],
+		);
 	});
 
 	it("resolveTimelineData applies disabledTitles and order correctly", () => {
-		const config = {
-			enable: true,
-			categories: [],
-			order: "asc",
-			disabledTitles: ["Senior Frontend Engineer"],
-		};
-		const resolved = resolveTimelineData(config);
-		assert.ok(!resolved.some((t) => t.title === "Senior Frontend Engineer"));
-		// timelineData 中最旧的条目是 2020.09 – 2024.06 (Computer Science & Engineering Degree)
-		assert.equal(resolved[0].title, "Computer Science & Engineering Degree");
+		const items = [
+			{ title: "Senior Frontend Engineer", date: "2024.06 - Present" },
+			{ title: "Computer Science & Engineering Degree", date: "2020.09 - 2024.06" },
+			{ title: "First Internship", date: "2019.06 - 2019.09" },
+		];
+		const resolved = resolveTimelineData(
+			{
+				enable: true,
+				categories: [],
+				order: "asc",
+				disabledTitles: ["Senior Frontend Engineer"],
+			},
+			items,
+		);
+		assert.deepEqual(
+			resolved.map((item) => item.title),
+			["First Internship", "Computer Science & Engineering Degree"],
+		);
 	});
 
 	it("resolveTimelineData sorts correctly by date in desc and asc order", () => {
@@ -81,13 +97,17 @@ describe("Feature Data & Resolver Tests", () => {
 	});
 
 	it("resolveDevicesData applies disabledIds correctly", () => {
-		const config = {
-			enable: true,
-			categories: [],
-			disabledIds: ["iphone-16-pro"],
-		};
-		const resolved = resolveDevicesData(config);
-		assert.ok(resolved.some((d) => d.id === "macbook-pro-16"));
-		assert.ok(!resolved.some((d) => d.id === "iphone-16-pro"));
+		const items = [
+			{ id: "keep", name: "Keep" },
+			{ id: "drop", name: "Drop" },
+		];
+		const resolved = resolveDevicesData(
+			{ enable: true, categories: [], disabledIds: ["drop"] },
+			items,
+		);
+		assert.deepEqual(
+			resolved.map((device) => device.id),
+			["keep"],
+		);
 	});
 });
