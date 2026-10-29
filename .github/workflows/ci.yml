@@ -14,6 +14,13 @@ concurrency:
 permissions:
   contents: read
 
+# CI 机器上没有本地 .env，必须显式指向远端内容仓。
+# 否则 source 会回落到仓库里提交的 shirone.content.json（../shirone-content 本地路径），
+# 在 runner 上不存在 → content:sync 失败 → user-config.ts 缺失 → astro check/build 全挂。
+env:
+  CONTENT_REPO_URL: "https://x-access-token:${{ secrets.CONTENT_ACCESS_TOKEN }}@github.com/${{ github.repository_owner }}/shirone-content.git"
+  CONTENT_REPO_REF: main
+
 jobs:
   quality:
     name: Code quality
@@ -76,6 +83,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Sync content
+        run: pnpm content:sync
 
       - name: Check Astro diagnostics
         run: pnpm exec astro check

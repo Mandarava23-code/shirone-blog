@@ -1,54 +1,61 @@
 name: Deploy Shirone Blog
 
-   on:
-     push:
-       branches: [main]
-       paths-ignore:
-         - "docs/**"
-         - "**/*.md"
-     repository_dispatch:
-       types: [content-updated]   # 内容仓派发
-     workflow_dispatch:
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+  # 内容仓 trigger-build.yml 派发过来的事件
+  repository_dispatch:
+    types: [content-updated]
+  workflow_dispatch:
 
+# peaceiris 要把产物推到 gh-pages 分支，必须是 write
 permissions:
-     contents: write              # peaceiris 推 gh-pages 分支需要
+  contents: write
 
-   concurrency:
-     group: deploy
-     cancel-in-progress: true     # 连续推送时只保留最新一次构建
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
-   jobs:
-     build-and-deploy:
-       runs-on: ubuntu-latest
-       timeout-minutes: 20
-       env:
-         CONTENT_REPO_URL: "https://x-access-token:${{ secrets.CONTENT_ACCESS_TOKEN }}@github.com/${{   github.repository_owner }}/shirone-content.git"
-         # 优先用内容仓携带的提交 SHA，手动/代码推送时回落到 main
-         CONTENT_REPO_REF: ${{ github.event.client_payload.sha || 'main' }}
-       steps:
-         - name: Checkout theme
-           uses: actions/checkout@v4
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # 私有内容仓：用 x-access-token 形式把凭据带进 URL
+      CONTENT_REPO_URL: "https://x-access-token:${{ secrets.CONTENT_ACCESS_TOKEN }}@github.com/${{ github.repository_owner }}/shirone-content.git"
+      # 优先锁定内容仓派发时携带的提交 SHA；push / 手动触发时回落到 main
+      CONTENT_REPO_REF: ${{ github.event.client_payload.sha || 'main' }}
+    steps:
+      - name: Checkout theme
+        uses: actions/checkout@v4
 
-         - name: Setup pnpm
-           uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.28.2
+          run_install: false
 
-         - name: Setup Node
-           uses: actions/setup-node@v4
-           with:
-             node-version: 22
-             cache: pnpm
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-         - name: Install dependencies
-           run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-         - name: Pull private content
-           run: pnpm content:sync
+      - name: Pull private content
+        run: pnpm content:sync
 
-         - name: Build
-           run: pnpm build
+      - name: Build
+        run: pnpm build
 
-         - name: Deploy to GitHub Pages
-           uses: peaceiris/actions-gh-pages@v4
-           with:
-             github_token: ${{ secrets.GITHUB_TOKEN }}
-             publish_dir: ./dist
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
