@@ -85,3 +85,15 @@ artifacts/shirone-ai-*
 # Only the marker is ignored. Materialized posts/series keep their real paths so
 # a crashed run leaves visible, reviewable files instead of hiding user content.
 /src/content/.playwright-content-fixtures.json
+
+# content repository (materialized by `pnpm content:sync`)
+/src/content/
+/src/data/*.ts
+/src/user/user-config.ts
+/src/config/FooterConfig.html
+/src/assets/images/
+/public/images/
+/public/assets/banner/
+/public/assets/music/
+/public/assets/projects/
+/public/assets/anime/*.webp
