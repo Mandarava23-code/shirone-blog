@@ -84,21 +84,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 双仓模式下 `src/user/user-config.ts` 被 eject 取消了 git 跟踪（.gitignore 也忽略它），
-      # 但主题单测要求仓库里存在「空覆盖层」。这里用主题自己的生成器先补一份空模板，
-      # 单测必须在 content:sync 之前跑 —— sync 之后文件会变成带真实配置的版本，与该用例的期望不符。
-      - name: Seed empty config overlay
-        run: |
-          node --input-type=module -e "
-            import { mkdirSync, writeFileSync } from 'node:fs';
-            import { EMPTY_MODULE } from './scripts/content/config-overlay.mjs';
-            mkdirSync('src/user', { recursive: true });
-            writeFileSync('src/user/user-config.ts', EMPTY_MODULE);
-          "
-
-      - name: Run unit tests
-        run: node --test "tests/**/*.test.mjs"
-
       - name: Sync content
         run: pnpm content:sync
 
@@ -110,6 +95,20 @@ jobs:
 
       - name: Validate atom manifest
         run: pnpm check:manifest
+
+      # 主题单测有一条不变式：「仓库里已提交的空覆盖层」必须逐字节等于 generateModule([])。
+      # 而 content:sync 会把 user-config.ts 写成带真实配置的版本，所以跑单测前先复位成空模板。
+      # 必须放在 sync 之后：其余用例需要 src/content/ 已被物化，否则也会失败。
+      - name: Reset config overlay to empty
+        run: |
+          node --input-type=module -e "
+            import { writeFileSync } from 'node:fs';
+            import { EMPTY_MODULE } from './scripts/content/config-overlay.mjs';
+            writeFileSync('src/user/user-config.ts', EMPTY_MODULE);
+          "
+
+      - name: Run unit tests
+        run: node --test "tests/**/*.test.mjs"
 
   build:
     name: Build (Node.js ${{ matrix.node }})
