@@ -67,16 +67,18 @@ usage document remains. The manifest validator continues to check every declared
 
 ## Style regression fixtures
 
-The font and inline-code emphasis tests use `tests/fixtures/typography.md`,
-independently of the blog's published posts. The shared Playwright fixture creates
-a uniquely named draft under `src/content/posts/`, waits for Astro to serve it,
-and removes it during worker teardown. It uses the existing Playwright web server
-and covers both direct loads and Swup navigation.
+The font and inline-code emphasis tests run against
+`tests/fixtures/content/posts/guide/`. globalSetup materializes that sample post
+and waits until Astro serves it before any spec runs, so both specs reuse the
+same `/posts/guide/` route as the other site tests and inject their own probes
+into `.markdown-content`. The fixture covers both direct loads and Swup
+navigation.
 
-Temporary files match `src/content/posts/playwright-typography-*.md` and are
-ignored by Git. If a test process is forcibly terminated, remove only those
-temporary files before the next run. They are drafts and are excluded from
-production post routes.
+The specs previously wrote a uniquely named draft into `src/content/posts/` during
+the run. That depended on the dev content watcher noticing the file mid-run; when
+it missed the `add` event the route stayed 404 for the whole poll. The shared
+fixture now waits on the materialized route instead (replaying the fixture copy
+once if the watcher missed the initial events).
 
 Run the CI style fragment with:
 

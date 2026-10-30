@@ -39,6 +39,11 @@ export default defineConfig({
 		timeout: 120_000,
 		env: {
 			ASTRO_DEV_BACKGROUND: "false",
+			// Astro derives `import.meta.env.PROD` from NODE_ENV. Inheriting
+			// `production` from the caller silently turns the dev server into a
+			// production build, which hides draft posts — and the fixtures rely
+			// on drafts being served.
+			NODE_ENV: "development",
 		},
 	},
 });

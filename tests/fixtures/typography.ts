@@ -1,47 +1,31 @@
-import { randomUUID } from "node:crypto";
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import { expect, test as base } from "@playwright/test";
+import { test as base, expect } from "@playwright/test";
 
 export { expect } from "@playwright/test";
 
-export const test = base.extend<
-	{ codePostPath: string },
-	{ typographyPost: string }
->({
-	typographyPost: [
-		async ({}, use) => {
-			const slug = `playwright-typography-${randomUUID()}`;
-			const postFile = fileURLToPath(
-				new URL(`../../src/content/posts/${slug}.md`, import.meta.url),
-			);
-			const content = await readFile(
-				new URL("./typography.md", import.meta.url),
-				"utf8",
-			);
-			await mkdir(dirname(postFile), { recursive: true });
-			await writeFile(postFile, content, { flag: "wx" });
-			try {
-				await use(`/posts/${slug}/`);
-			} finally {
-				await rm(postFile, { force: true });
-			}
-		},
-		{ scope: "worker" },
-	],
-	codePostPath: async ({ request, typographyPost }, use) => {
+/**
+ * The typography specs only need any served post page that owns
+ * `.markdown-content`; they inject their own probes into it.
+ *
+ * `/posts/guide/` is materialized by globalSetup, which also waits until Astro
+ * serves it (replaying the copy if the content watcher missed the initial
+ * events). Writing a throwaway post during the run was flaky: the watcher
+ * occasionally missed that post's `add` event and the route stayed 404 for the
+ * whole poll (the loader only re-reads entries it already tracks).
+ */
+export const test = base.extend<{ codePostPath: string }>({
+	codePostPath: async ({ request }, use) => {
+		const path = "/posts/guide/";
 		await expect
 			.poll(
 				async () => {
-					const response = await request.get(typographyPost);
+					const response = await request.get(path);
 					const status = response.status();
 					await response.dispose();
 					return status;
 				},
-				{ message: "Astro serves the temporary typography post", timeout: 15_000 },
+				{ message: "Astro serves the guide fixture post", timeout: 30_000 },
 			)
 			.toBe(200);
-		await use(typographyPost);
+		await use(path);
 	},
 });
