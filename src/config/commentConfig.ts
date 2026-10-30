@@ -38,7 +38,7 @@ export const commentConfig: CommentConfig = withUserConfig("comment", {
     /** Twikoo 专有配置 */
     twikoo: {
         /** Twikoo 环境 ID（如 "https://your-twikoo.vercel.app" 或腾讯云环境 ID） */
-        envId: "https://comments.mandarava23.top",
+        envId: "https://comment.mandarava23.top",
         /** Twikoo 前端 JS 脚本 CDN 地址（自托管，版本必须与云函数一致：2.0.17） */
         scriptUrl: "/vendor/twikoo/2.0.17/twikoo.min.js",
         /** 评论语言："auto"（跟随站点）| "zh-CN" | "zh-TW" | "en" | "ja" 等 */
