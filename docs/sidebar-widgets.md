@@ -82,6 +82,7 @@ interface SidebarWidgetBase {
 
 - **数据源**：`src/utils/site-stats.ts`（总字数、文章数、运行天数等备忘化计算）；
 - **渲染**：`WidgetLayout` 外壳 + 键值对网格；
+- **功能门控**：动态行仅在 `momentsConfig.enable` 为真时统计并产出，关闭动态页后整行消失（与 `seriesConfig.enable` 的门控方式一致）；
 - **页面范围**：通常在首页与归档页显示。
 
 ---

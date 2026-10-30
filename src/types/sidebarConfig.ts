@@ -104,7 +104,7 @@ export interface AnnouncementWidget {
 	pages?: SidebarPage[];
 }
 
-/** 站点统计（数据自动汇总：文章/动态/分类/标签/总字数/运行天数） */
+/** 站点统计（数据自动汇总：文章/动态/分类/标签/总字数/运行天数；动态行受 momentsConfig.enable 门控） */
 export interface StatsWidget {
 	type: "stats";
 	enable: boolean;

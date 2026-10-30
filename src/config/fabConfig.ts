@@ -20,38 +20,38 @@ import { withUserConfig } from "../utils/config-overlay.ts";
  * 架构规范见 docs/fab-system.md。
  */
 export const fabConfig: FabConfig = withUserConfig("fab", {
-	enable: true,
-	align: "end",
-	size: "regular",
-	offset: {
-		bottom: "var(--m3e-space-8)",
-		right: "var(--m3e-space-6)",
-	},
-	items: [
-		{
-			type: "top",
-			enable: true,
-			devices: ["mobile", "tablet", "desktop"],
-		},
-		{
-			type: "toc",
-			enable: true,
-			devices: ["mobile", "tablet"],
-			pages: ["post"],
-			depth: 3,
-			closeOnSelect: true,
-		},
-		{
-			type: "comment",
-			enable: true,
-			devices: ["mobile", "tablet"],
-			pages: ["post"],
-		},
-		{
-			type: "home",
-			enable: true,
-			devices: ["mobile", "tablet"],
-			onlySubPages: true,
-		},
-	],
+    enable: true,
+    align: "end",
+    size: "regular",
+    offset: {
+        bottom: "var(--m3e-space-8)",
+        right: "var(--m3e-space-6)",
+    },
+    items: [
+        {
+            type: "top",
+            enable: true,
+            devices: ["mobile", "tablet", "desktop"],
+        },
+        {
+            type: "toc",
+            enable: true,
+            devices: ["mobile", "tablet"],
+            pages: ["post"],
+            depth: 3,
+            closeOnSelect: true,
+        },
+        {
+            type: "comment",
+            enable: true,
+            devices: ["mobile", "tablet"],
+            pages: ["post"],
+        },
+        {
+            type: "home",
+            enable: true,
+            devices: ["mobile", "tablet"],
+            onlySubPages: true,
+        },
+    ],
 });
