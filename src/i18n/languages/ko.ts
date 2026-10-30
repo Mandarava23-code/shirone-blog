@@ -19,6 +19,8 @@ export const ko: Translation = {
 	[Key.friendsCount]: "개의 친구 링크",
 	[Key.friendsCounts]: "개의 친구 링크",
 
+	[Key.travelling]: "Travelling",
+
 	[Key.moments]: "모먼트",
 	[Key.momentsNoResults]: "조건에 맞는 모먼트가 없습니다",
 	[Key.momentsBanner]: "일상과 작업, 그리고 사소한 행복을 짧게 기록합니다.",

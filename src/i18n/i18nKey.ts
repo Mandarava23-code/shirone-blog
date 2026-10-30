@@ -18,6 +18,8 @@ enum I18nKey {
 	friendsBanner = "friendsBanner",
 	friendsCount = "friendsCount",
 	friendsCounts = "friendsCounts",
+	/** 开往（Travelling）友链接力：顶栏与导航抽屉共用的外链入口 */
+	travelling = "travelling",
 
 	moments = "moments",
 	momentsNoResults = "momentsNoResults",

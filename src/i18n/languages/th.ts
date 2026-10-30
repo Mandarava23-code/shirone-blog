@@ -18,6 +18,8 @@ export const th: Translation = {
 	[Key.friendsCount]: "ลิงก์",
 	[Key.friendsCounts]: "ลิงก์",
 
+	[Key.travelling]: "Travelling",
+
 	[Key.moments]: "โมเมนต์",
 	[Key.momentsNoResults]: "ไม่มีโมเมนต์ที่ตรงกับตัวกรอง",
 	[Key.momentsBanner]: "บันทึกสั้น ๆ — ชีวิต งาน และความสุขเล็ก ๆ",

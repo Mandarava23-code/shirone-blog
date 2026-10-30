@@ -18,6 +18,8 @@ export const zh_TW: Translation = {
 	[Key.friendsCount]: "個友鏈",
 	[Key.friendsCounts]: "個友鏈",
 
+	[Key.travelling]: "開往",
+
 	[Key.moments]: "動態",
 	[Key.momentsNoResults]: "沒有符合條件的動態",
 	[Key.momentsBanner]: "隨手記錄的碎碎念 —— 生活、折騰與一切小確幸。",

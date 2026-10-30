@@ -18,6 +18,8 @@ export const zh_CN: Translation = {
 	[Key.friendsCount]: "个友链",
 	[Key.friendsCounts]: "个友链",
 
+	[Key.travelling]: "开往",
+
 	[Key.moments]: "动态",
 	[Key.momentsNoResults]: "没有符合条件的动态",
 	[Key.momentsBanner]: "随手记录的碎碎念 —— 生活、折腾与一切小确幸。",

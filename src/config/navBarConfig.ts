@@ -50,6 +50,19 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:handshake-outline-rounded",
         pageKey: "friends",
     },
+    /**
+     * 开往（Travelling）友链接力外链。
+     * 站外入口，用于满足「打开网站即可看到开往外链」的互链要求：
+     * 顶栏常驻在友链右侧，窄屏下随导航抽屉一起展示，因此移动端同样可达。
+     * 图标按开往官方推荐使用 Material Icons 的 train。
+     */
+    Travelling: {
+        name: i18n(I18nKey.travelling),
+        url: "https://www.travellings.cn/go.html",
+        icon: "material-symbols:train-rounded",
+        external: true,
+        pageKey: "travelling",
+    },
     Moments: {
         name: i18n(I18nKey.moments),
         url: "/moments/",
@@ -163,6 +176,7 @@ const defaultNavBarConfig: NavBarConfig = {
             ],
         },
         LinkPresets.Friends,
+        LinkPresets.Travelling,
     ],
 };
 
