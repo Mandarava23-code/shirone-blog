@@ -27,11 +27,14 @@ const commentKeys = [
 	I18nKey.commentsRequiresJavaScript,
 ];
 
-const twikooScriptUrl =
-	"https://cdn.jsdelivr.net/npm/twikoo@1.7.19/dist/twikoo.min.js";
+// 与站点真实配置联动：脚本版本或托管位置变更后，测试不需要改常量
+const twikooScriptUrl = String(commentConfig.twikoo.scriptUrl);
+const twikooScriptRoute = twikooScriptUrl.startsWith("http")
+	? twikooScriptUrl
+	: `**${twikooScriptUrl}`;
 
 async function mockTwikoo(page: Page) {
-	await page.route(twikooScriptUrl, async (route) => {
+	await page.route(twikooScriptRoute, async (route) => {
 		await route.fulfill({
 			contentType: "application/javascript",
 			body:
@@ -51,20 +54,20 @@ async function mockTwikoo(page: Page) {
 										<div class="tk-avatar"></div>
 										<div class="tk-col">
 											<div class="tk-meta-input">
-												<div class="el-input el-input-group el-input-group--prepend"><div class="el-input-group__prepend">Nickname</div><input name="nick" placeholder="Required" class="el-input__inner"></div>
-												<div class="el-input el-input-group el-input-group--prepend"><div class="el-input-group__prepend">Email</div><input name="mail" type="email" placeholder="Required" class="el-input__inner"></div>
-												<div class="el-input el-input-group el-input-group--prepend"><div class="el-input-group__prepend">Website</div><input name="link" placeholder="Optional" class="el-input__inner"></div>
+												<div class="tk-input tk-input--group tk-meta-input__item tk-input--small"><div class="tk-input-group__prepend">Nickname</div><input name="nick" placeholder="Required" class="tk-input__inner"></div>
+												<div class="tk-input tk-input--group tk-meta-input__item tk-input--small"><div class="tk-input-group__prepend">Email</div><input name="mail" type="email" placeholder="Required" class="tk-input__inner"></div>
+												<div class="tk-input tk-input--group tk-meta-input__item tk-input--small"><div class="tk-input-group__prepend">Website</div><input name="link" placeholder="Optional" class="tk-input__inner"></div>
 											</div>
-											<div class="tk-input el-textarea"><textarea class="el-textarea__inner" placeholder="" style="min-height:97px;height:97px"></textarea><span class="el-input__count">0/500</span></div>
+											<div class="tk-input tk-textarea"><textarea class="tk-input__inner" placeholder="" style="min-height:97px;height:97px"></textarea><span class="tk-input__count">0/500</span></div>
 										</div>
 									</div>
-									<div class="tk-row actions"><div class="tk-row-actions-start"><div class="tk-submit-action-icon"><svg></svg></div></div><button class="el-button tk-preview">Preview</button><button class="el-button tk-send" disabled>Send</button></div>
+									<div class="tk-row actions"><div class="tk-row-actions-start"><div class="tk-submit-action-icon"><svg></svg></div></div><button class="tk-button tk-preview">Preview</button><button class="tk-button tk-send" disabled>Send</button></div>
 								</div>
 								<a href="#" class="tk-action-link tk-like-action" style="display:block;width:48px;height:48px">Like</a>
 								<div class="tk-comments-container">
 									<div class="tk-comments-title"><span></span><span><span class="tk-icon __comments"><svg></svg></span><span class="tk-icon __comments tk-admin-entry" style="display:inline-block;width:24px;height:24px"><svg></svg></span></span></div>
 									<div class="tk-comments-no">No comment</div>
-									<div class="el-loading-mask" style="display:none"><div class="el-loading-spinner">Native spinner</div></div>
+									<div class="tk-loading-mask" style="display:none"><div class="tk-loading-spinner">Native spinner</div></div>
 								</div>
 								<div class="tk-admin-container"><div class="tk-admin" style="display:none;position:fixed;inset:0;z-index:1000;color:rgb(255,255,255);background:rgba(0,0,0,.85)"><a href="#" class="tk-admin-close" style="display:block;width:48px;height:48px">Close</a><div class="tk-admin-comment"><div class="tk-content">User comment</div></div></div></div>
 							</div>
@@ -327,7 +330,7 @@ test.describe("Comment System - Configuration & Architecture", () => {
 		await expect(wrapper).toHaveCount(1);
 		await expect(wrapper).toHaveAttribute(
 			"data-twikoo-env-id",
-			"https://twikoo.mysqil.com",
+			String(commentConfig.twikoo.envId),
 		);
 		await expect(wrapper).toHaveAttribute("data-twikoo-lazy", "true");
 
@@ -391,7 +394,7 @@ test.describe("Comment System - Configuration & Architecture", () => {
 				Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
 			);
 			const metaBox = await page.locator(".tk-meta-input").boundingBox();
-			const fields = page.locator(".tk-meta-input > .el-input");
+			const fields = page.locator(".tk-meta-input > .tk-input");
 			const fieldBoxes = await fields.evaluateAll((elements) =>
 				elements.map((element) => {
 					const field = element.getBoundingClientRect();
@@ -501,7 +504,7 @@ test.describe("Comment System - Configuration & Architecture", () => {
 		const textarea = page.locator(".tk-input textarea");
 		await expect(textarea).toHaveAttribute(
 			"placeholder",
-			"Share your thoughts...",
+			String(commentConfig.twikoo.placeholder),
 		);
 		const placeholderStyle = await textarea.evaluate((element) => {
 			const styles = getComputedStyle(element, "::placeholder");
@@ -524,7 +527,7 @@ test.describe("Comment System - Configuration & Architecture", () => {
 		await expect(skeleton).toBeAttached();
 
 		await commentsContainer.evaluate((element) => {
-			const mask = element.querySelector<HTMLElement>(".el-loading-mask");
+			const mask = element.querySelector<HTMLElement>(".tk-loading-mask");
 			mask?.style.removeProperty("display");
 		});
 
@@ -534,7 +537,7 @@ test.describe("Comment System - Configuration & Architecture", () => {
 			"d",
 			"",
 		);
-		await expect(page.locator(".el-loading-spinner")).toBeHidden();
+		await expect(page.locator(".tk-loading-spinner")).toBeHidden();
 
 		const [containerBox, indicatorBox] = await Promise.all([
 			commentsContainer.boundingBox(),
