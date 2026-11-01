@@ -170,7 +170,7 @@ const defaultNavBarConfig: NavBarConfig = {
         LinkPresets.Home,
         LinkPresets.Archive,
         LinkPresets.Categories,
-        // 图床外链固定在「分类」与「站点罗盘」之间
+        LinkPresets.Tags,
         LinkPresets.ImageHost,
         //LinkPresets.Moments,
         //LinkPresets.Anime,
@@ -187,7 +187,6 @@ const defaultNavBarConfig: NavBarConfig = {
                 LinkPresets.Timeline,
                 // 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
                 // 需要时取消注释即可
-                // LinkPresets.Tags,
                 LinkPresets.About,
                 LinkPresets.GitHub,
             ],
