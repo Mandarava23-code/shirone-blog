@@ -8,8 +8,9 @@ import { withUserConfig } from "../utils/config-overlay.ts";
 export const announcementConfig: AnnouncementConfig = withUserConfig(
     "announcement",
     {
-        title: "", // 公告标题，填空使用 i18n 字符串 Key.announcement
-        content: "博客正在施工中", // 公告内容
+        title: "待办", // 公告标题，填空使用 i18n 字符串 Key.announcement
+        content:
+            "1.安装libc-searcher<br/>2.剩余文章信息补全<br/>3.制作友链申请功能", // 公告内容
         closable: true, // 允许用户关闭公告
         link: {
             enable: true, // 启用链接
