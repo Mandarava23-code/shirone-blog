@@ -19,19 +19,22 @@ test.describe("设备展示页", () => {
 			"5 devices",
 		);
 
-		const macbook = page.locator('[data-device="macbook-pro-16"]');
-		await expect(macbook.locator("h2")).toHaveText('MacBook Pro 16"');
-		await expect(macbook.locator(".device-card__brand")).toHaveText("Apple");
-		await expect(macbook.locator('[data-status="active"]')).toContainText(
+		const laptop = page.locator('[data-device="asus-tuf-gaming-a15"]');
+		await expect(laptop.locator("h2")).toHaveText("ASUS TUF Gaming A15");
+		await expect(laptop.locator(".device-card__brand")).toHaveText("ASUS");
+		await expect(laptop.locator('[data-status="active"]')).toContainText(
 			"Active",
 		);
-		await expect(macbook.locator(".device-card__specs")).toContainText(
-			"M3 Max / 64GB / 2TB",
+		await expect(laptop.locator(".device-card__specs")).toContainText(
+			"Ryzen 9 5900HX / RTX 3060 / 16GB / 512GB",
 		);
-		await expect(macbook).toHaveClass(/device-card--featured/);
+		await expect(laptop).toHaveClass(/device-card--featured/);
 		await expect(
-			macbook.getByRole("link", { name: "View details" }),
-		).toHaveAttribute("href", "https://www.apple.com/macbook-pro/");
+			laptop.getByRole("link", { name: "View details" }),
+		).toHaveAttribute(
+			"href",
+			"https://www.asus.com/laptops/for-gaming/tuf-gaming/2021-asus-tuf-gaming-a15/",
+		);
 
 		// 无图片设备：渲染图标瓷砖形态（不渲染媒体区）
 		const iphone = page.locator('[data-device="iphone-16-pro"]');
@@ -70,7 +73,9 @@ test.describe("设备展示页", () => {
 		);
 		await expect(page.locator('[data-device="iphone-16-pro"]')).toBeVisible();
 		await expect(page.locator('[data-device="ipad-pro-11"]')).toBeVisible();
-		await expect(page.locator('[data-device="macbook-pro-16"]')).toHaveCount(0);
+		await expect(
+			page.locator('[data-device="asus-tuf-gaming-a15"]'),
+		).toHaveCount(0);
 		await expect(page.locator(".devices-section__loading")).toHaveCount(0);
 
 		// 再次点击已选分类取消筛选，恢复全部
@@ -92,10 +97,12 @@ test.describe("设备展示页", () => {
 	test("实时搜索过滤与清除（URL ?q= 同步）", async ({ page }) => {
 		const searchInput = page.locator(".devices-section__search input");
 		await expect(searchInput).toBeVisible();
-		await searchInput.fill("MacBook");
+		await searchInput.fill("TUF");
 		await expect(page.locator(".device-card")).toHaveCount(1);
-		await expect(page.locator('[data-device="macbook-pro-16"]')).toBeVisible();
-		await expect(page).toHaveURL(/[?&]q=MacBook/);
+		await expect(
+			page.locator('[data-device="asus-tuf-gaming-a15"]'),
+		).toBeVisible();
+		await expect(page).toHaveURL(/[?&]q=TUF/);
 
 		// 清除搜索恢复全部
 		const clearBtn = page.locator(".devices-section__search-clear");

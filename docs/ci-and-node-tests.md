@@ -43,8 +43,8 @@ Reproduce the failed step locally with the same Node major version and command. 
 ## Sample content fixtures
 
 The blog does not publish the upstream sample articles, but most site specs still
-navigate to their stable routes (`/posts/guide/`, `/series/markdown-syntax-guide/`,
-and so on). Those articles, series, and include snippets live under
+navigate to their stable routes (`/posts/guide/`, `/posts/admonitions/`,
+and so on). Those articles and include snippets live under
 `tests/fixtures/content/` and are materialized by `tests/fixtures/setup-content.ts`
 before the suite runs; `tests/fixtures/teardown-content.ts` removes exactly the
 entries it created. The node include tests read the snippet straight from

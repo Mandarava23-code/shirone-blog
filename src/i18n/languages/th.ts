@@ -20,6 +20,8 @@ export const th: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "โฮสต์รูปภาพ",
+
 	[Key.moments]: "โมเมนต์",
 	[Key.momentsNoResults]: "ไม่มีโมเมนต์ที่ตรงกับตัวกรอง",
 	[Key.momentsBanner]: "บันทึกสั้น ๆ — ชีวิต งาน และความสุขเล็ก ๆ",
@@ -145,16 +147,17 @@ export const th: Translation = {
 
 	[Key.tags]: "ป้ายกำกับ",
 	[Key.categories]: "หมวดหมู่",
-	[Key.series]: "ซีรีส์",
-	[Key.seriesCount]: "ซีรีส์",
-	[Key.seriesCounts]: "ซีรีส์",
-	[Key.seriesStatusOngoing]: "กำลังดำเนินอยู่",
-	[Key.seriesStatusCompleted]: "เสร็จสมบูรณ์",
-	[Key.seriesPartOf]: "บทความนี้เป็นส่วนหนึ่งของซีรีส์",
-	[Key.seriesPart]: "ตอนที่ {index} จาก {total}",
-	[Key.seriesPrevInSeries]: "ตอนก่อนหน้าในซีรีส์",
-	[Key.seriesNextInSeries]: "ตอนถัดไปในซีรีส์",
-	[Key.seriesViewAll]: "ดูซีรีส์ทั้งหมด",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "ซีรีส์",
+	// [Key.seriesCount]: "ซีรีส์",
+	// [Key.seriesCounts]: "ซีรีส์",
+	// [Key.seriesStatusOngoing]: "กำลังดำเนินอยู่",
+	// [Key.seriesStatusCompleted]: "เสร็จสมบูรณ์",
+	// [Key.seriesPartOf]: "บทความนี้เป็นส่วนหนึ่งของซีรีส์",
+	// [Key.seriesPart]: "ตอนที่ {index} จาก {total}",
+	// [Key.seriesPrevInSeries]: "ตอนก่อนหน้าในซีรีส์",
+	// [Key.seriesNextInSeries]: "ตอนถัดไปในซีรีส์",
+	// [Key.seriesViewAll]: "ดูซีรีส์ทั้งหมด",
 	[Key.recentPosts]: "โพสต์ล่าสุด",
 	[Key.tableOfContents]: "สารบัญ",
 	[Key.formulaScrollable]: "สูตรที่เลื่อนในแนวนอนได้",

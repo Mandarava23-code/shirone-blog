@@ -29,6 +29,7 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { CONFIG_DIRECTORY } from "./config-domains.mjs";
 import { syncUserConfig } from "./config-overlay.mjs";
+import { collectGitIgnoredPaths } from "./gitignore.mjs";
 import {
 	canonicalGitUrl,
 	LOCK_FILE,
@@ -326,19 +327,28 @@ function warnUnmountedDirectories(sourceRoot, mounts) {
 /**
  * 同步单个挂载点。
  *
- * @returns {{copied: number, removed: number, files: number}}
+ * @returns {{copied: number, removed: number, files: number, ignored: number}}
  */
 function syncMount(sourceRoot, sourceDir, targetDir, resolved) {
 	const sourceAbsolute = join(sourceRoot, sourceDir);
 	const targetAbsolute = join(ROOT, targetDir);
 
 	const sourceFiles = collectFiles(sourceAbsolute);
-	const sourceFileSet = new Set(sourceFiles);
+	// 内容仓 `.gitignore` 掉的路径不参与物化：它们不是要发布的内容，
+	// 留在 `src/content/**` 只会让 Astro 的 schema 校验报错。
+	const ignoredPaths = collectGitIgnoredPaths(sourceRoot, sourceDir, sourceFiles);
+	const materializedFiles =
+		ignoredPaths.size === 0
+			? sourceFiles
+			: sourceFiles.filter(
+					(relativePath) => !ignoredPaths.has(`${sourceDir}/${relativePath}`),
+				);
+	const sourceFileSet = new Set(materializedFiles);
 	// 只有内容仓真正拥有的顶层段才参与裁剪，主题自有目录因此天然免疫。
 	const ownedSegments = new Set(sourceFiles.map(topSegment));
 
 	let copied = 0;
-	for (const relativePath of sourceFiles) {
+	for (const relativePath of materializedFiles) {
 		const repoRelative = `${targetDir}/${relativePath}`;
 		if (matchesAny(repoRelative, PROTECTED_PATHS)) {
 			throw new Error(
@@ -383,7 +393,12 @@ function syncMount(sourceRoot, sourceDir, targetDir, resolved) {
 		}
 	}
 
-	return { copied, removed, files: sourceFiles.length };
+	return {
+		copied,
+		removed,
+		files: materializedFiles.length,
+		ignored: sourceFiles.length - materializedFiles.length,
+	};
 }
 
 function writeLockFile(resolved, sourceRoot, commit, mountStats, configFiles) {
@@ -434,6 +449,7 @@ function runSync() {
 	const mountStats = {};
 	let totalCopied = 0;
 	let totalRemoved = 0;
+	let totalIgnored = 0;
 	const skipped = [];
 
 	for (const [sourceDir, targetDir] of Object.entries(resolved.mounts)) {
@@ -442,9 +458,12 @@ function runSync() {
 			continue;
 		}
 		const stats = syncMount(sourceRoot, sourceDir, targetDir, resolved);
-		mountStats[targetDir] = stats;
+		// `ignored` 只用于本次日志，不写进 content.lock.json 的挂载统计。
+		const { ignored, ...lockStats } = stats;
+		mountStats[targetDir] = lockStats;
 		totalCopied += stats.copied;
 		totalRemoved += stats.removed;
+		totalIgnored += ignored;
 	}
 
 	// 配置覆盖必须在挂载之后：类型校验会读到内容仓刚物化过来的 src/data/*.ts。
@@ -495,6 +514,7 @@ function runSync() {
 	log(
 		`${options.dryRun ? "[dry-run] " : ""}Materialized ${totalFiles} files` +
 			` (updated ${totalCopied}, pruned ${totalRemoved})` +
+			`${totalIgnored > 0 ? `, skipped ${totalIgnored} gitignored` : ""}` +
 			`${config.files.length > 0 ? `, config overlays ${config.files.length}${config.changed ? " (updated)" : ""}` : ""}` +
 			`${commit ? `, content commit ${commit.slice(0, 8)}` : ""}`,
 	);

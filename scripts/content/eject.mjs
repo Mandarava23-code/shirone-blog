@@ -269,9 +269,10 @@ function writeStarterFiles(outAbsolute, plan) {
 	const postCount = plan.filter(
 		(item) => item.to.startsWith("content/posts/") && item.to.endsWith(".md"),
 	).length;
-	const seriesCount = plan.filter(
-		(item) => item.to.startsWith("content/series/") && item.to.endsWith(".md"),
-	).length;
+	// 系列（series）功能已停用（2026-11）
+	// const seriesCount = plan.filter(
+	// 	(item) => item.to.startsWith("content/series/") && item.to.endsWith(".md"),
+	// ).length;
 
 	writeConfigStarters(outAbsolute);
 
@@ -314,7 +315,9 @@ function writeStarterFiles(outAbsolute, plan) {
 			"",
 			"边写边看时可以另开一个终端运行 `pnpm content:watch`。",
 			"",
-			`当前共 ${postCount} 篇文章、${seriesCount} 个系列。`,
+			// 系列（series）功能已停用（2026-11），原为：
+			// `当前共 ${postCount} 篇文章、${seriesCount} 个系列。`,
+			`当前共 ${postCount} 篇文章。`,
 			"",
 		].join("\n"),
 	);

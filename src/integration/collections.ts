@@ -19,14 +19,16 @@ export const postSchema: z.ZodType = z.object({
 	image: z.string().optional().default(""),
 	tags: z.array(z.string()).optional().default([]),
 	category: z.string().optional().nullable().default(""),
-	/** Series slug the post belongs to (empty = none; single series per post). */
-	series: z
-		.string()
-		.optional()
-		.default("")
-		.transform((value) => value.trim()),
-	/** Position inside the series; falls back to publication order when absent. */
-	seriesOrder: z.number().int().optional(),
+	// 系列（series）功能已停用（2026-11）：文章 frontmatter 的系列字段保留如下，
+	// 恢复时取消注释即可（旧内容里的 series/seriesOrder 会被 schema 忽略，不报错）
+	// /** Series slug the post belongs to (empty = none; single series per post). */
+	// series: z
+	// 	.string()
+	// 	.optional()
+	// 	.default("")
+	// 	.transform((value) => value.trim()),
+	// /** Position inside the series; falls back to publication order when absent. */
+	// seriesOrder: z.number().int().optional(),
 	lang: z.string().optional().default(""),
 
 	/* Post encryption */
@@ -74,35 +76,40 @@ export const momentSchema: z.ZodType = z.object({
 /** Schema for free-form spec pages (currently just `about.md`). */
 export const specSchema: z.ZodType = z.object({});
 
-/**
- * Schema for series entities. Each entry is one series; the Markdown body is
- * the optional overview rendered on the series page.
- */
-export const seriesSchema: z.ZodType = z.object({
-	title: z.string(),
-	status: z.enum(["ongoing", "completed"]).optional().default("ongoing"),
-	defaultCategory: z.string().optional().default(""),
-});
+// 系列（series）功能已停用（2026-11）：系列集合 schema 保留如下，恢复时取消注释。
+// 原 `src/integration/collections.manifest.json` 条目（JSON 无法写注释，故备份在此）：
+//   { "key": "series", "pattern": "**/*.md", "schema": "seriesSchema" }
+// /**
+//  * Schema for series entities. Each entry is one series; the Markdown body is
+//  * the optional overview rendered on the series page.
+//  */
+// export const seriesSchema: z.ZodType = z.object({
+// 	title: z.string(),
+// 	status: z.enum(["ongoing", "completed"]).optional().default("ongoing"),
+// 	defaultCategory: z.string().optional().default(""),
+// });
 
 /**
  * Helper to create a collection definition with the standard glob loader.
  * Package mode users can import this if they need custom paths.
  */
 export function createCollection(
-	key: "posts" | "moments" | "spec" | "series",
+	key: "posts" | "moments" | "spec",
 	base: string,
 ): ReturnType<typeof defineCollection> {
 	const loaders = {
 		posts: glob({ base: `${base}/posts`, pattern: "**/*.{md,mdx}" }),
 		moments: glob({ base: `${base}/moments`, pattern: "**/*.md" }),
 		spec: glob({ base: `${base}/spec`, pattern: "**/*.{md,mdx}" }),
-		series: glob({ base: `${base}/series`, pattern: "**/*.md" }),
+		// 系列（series）功能已停用（2026-11）
+		// series: glob({ base: `${base}/series`, pattern: "**/*.md" }),
 	};
 	const schemas = {
 		posts: postSchema,
 		moments: momentSchema,
 		spec: specSchema,
-		series: seriesSchema,
+		// 系列（series）功能已停用（2026-11）
+		// series: seriesSchema,
 	};
 	return defineCollection({
 		loader: loaders[key],

@@ -12,8 +12,9 @@ export default defineConfig({
 	testMatch: "**/*.spec.ts",
 	timeout: 30_000,
 	expect: { timeout: 5_000 },
-	// Sample posts/series live under tests/fixtures/content and are copied into
+	// Sample posts live under tests/fixtures/content and are copied into
 	// src/content only while the suite runs; teardown removes them again.
+	// (The series sample fixtures were retired with the series feature, 2026-11.)
 	globalSetup: "./tests/fixtures/setup-content.ts",
 	globalTeardown: "./tests/fixtures/teardown-content.ts",
 	// 截图命名去掉平台/项目后缀（-win32），且随 spec 文件旁存放

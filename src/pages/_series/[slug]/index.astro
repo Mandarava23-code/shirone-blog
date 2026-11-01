@@ -1,67 +1,74 @@
 ---
-/**
- * 系列详情页：单个系列的落地页。
- * 总览正文（可选，来自系列实体 body）+ 按 seriesOrder 排序的文章列表
- * （列表项标注「第 N 篇」）。系列实体缺失时重定向到 404 存根。
+/** src/pages/_series/[slug]/index.astro：系列（series）功能已整体停用（2026-11）。
+ * 下方保留原始实现（逐行注释），恢复时去掉行首的 `// ` 即可；
+ * 模板部分包在 HTML 注释里，恢复时同时去掉 `<!--` / `-->` 两行。
  */
-import { render } from "astro:content";
-import Card from "@components/atoms/display/Card.svelte";
-import PageHeader from "@components/atoms/display/PageHeader.astro";
-import Markdown from "@components/content/Markdown.astro";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSeriesCatalog, getSortedPostsList } from "@utils/content-utils";
-import { formatDateToYYYYMMDD } from "@utils/date-utils";
-import { getMarkdownStylesheetAssets } from "@utils/markdown-assets";
-import {
-	normaliseSeriesSlug,
-	orderSeriesMembers,
-	type SeriesMemberInput,
-} from "@utils/series-utils";
-import { url } from "@utils/url-utils";
-import { seriesConfig } from "@/config";
 
-export async function getStaticPaths() {
-	// Gate here rather than redirecting in the body: a redirect still emits a
-	// page, so `/series/<slug>/` would answer 200 with a meta-refresh stub while
-	// the feature is off. Returning no paths means Astro never generates the
-	// route, so the URL is a plain 404.
-	if (!seriesConfig.enable) return [];
-	const catalog = await getSeriesCatalog();
-	return [...catalog.keys()].map((slug) => ({ params: { slug } }));
-}
+// /**
+//  * 系列详情页：单个系列的落地页。
+//  * 总览正文（可选，来自系列实体 body）+ 按 seriesOrder 排序的文章列表
+//  * （列表项标注「第 N 篇」）。系列实体缺失时重定向到 404 存根。
+//  */
+// import { render } from "astro:content";
+// import Card from "@components/atoms/display/Card.svelte";
+// import PageHeader from "@components/atoms/display/PageHeader.astro";
+// import Markdown from "@components/content/Markdown.astro";
+// import I18nKey from "@i18n/i18nKey";
+// import { i18n } from "@i18n/translation";
+// import MainGridLayout from "@layouts/MainGridLayout.astro";
+// import { getSeriesCatalog, getSortedPostsList } from "@utils/content-utils";
+// import { formatDateToYYYYMMDD } from "@utils/date-utils";
+// import { getMarkdownStylesheetAssets } from "@utils/markdown-assets";
+// import {
+// 	normaliseSeriesSlug,
+// 	orderSeriesMembers,
+// 	type SeriesMemberInput,
+// } from "@utils/series-utils";
+// import { url } from "@utils/url-utils";
+// import { seriesConfig } from "@/config";
 
-const { slug } = Astro.params;
-const catalog = await getSeriesCatalog();
-const series = slug ? catalog.get(slug) : undefined;
-if (!series) {
-	return Astro.redirect("/404/");
-}
+// export async function getStaticPaths() {
+// 	// Gate here rather than redirecting in the body: a redirect still emits a
+// 	// page, so `/series/<slug>/` would answer 200 with a meta-refresh stub while
+// 	// the feature is off. Returning no paths means Astro never generates the
+// 	// route, so the URL is a plain 404.
+// 	if (!seriesConfig.enable) return [];
+// 	const catalog = await getSeriesCatalog();
+// 	return [...catalog.keys()].map((slug) => ({ params: { slug } }));
+// }
 
-const { Content, remarkPluginFrontmatter } = await render(series);
-const markdownStylesheetAssets = await getMarkdownStylesheetAssets(
-	remarkPluginFrontmatter.markdownSyntaxes,
-);
+// const { slug } = Astro.params;
+// const catalog = await getSeriesCatalog();
+// const series = slug ? catalog.get(slug) : undefined;
+// if (!series) {
+// 	return Astro.redirect("/404/");
+// }
 
-const posts = await getSortedPostsList();
-const members: SeriesMemberInput[] = posts
-	.filter((post) => normaliseSeriesSlug(post.data.series) === series.id)
-	.map((post) => ({
-		slug: post.slug,
-		title: post.data.title,
-		published: post.data.published,
-		series: normaliseSeriesSlug(post.data.series),
-		seriesOrder: post.data.seriesOrder,
-	}));
-const ordered = orderSeriesMembers(members);
+// const { Content, remarkPluginFrontmatter } = await render(series);
+// const markdownStylesheetAssets = await getMarkdownStylesheetAssets(
+// 	remarkPluginFrontmatter.markdownSyntaxes,
+// );
 
-const statusLabel =
-	series.data.status === "completed"
-		? i18n(I18nKey.seriesStatusCompleted)
-		: i18n(I18nKey.seriesStatusOngoing);
-const subtitle = `${statusLabel} · ${ordered.length} ${i18n(I18nKey.postsCount)}`;
+// const posts = await getSortedPostsList();
+// const members: SeriesMemberInput[] = posts
+// 	.filter((post) => normaliseSeriesSlug(post.data.series) === series.id)
+// 	.map((post) => ({
+// 		slug: post.slug,
+// 		title: post.data.title,
+// 		published: post.data.published,
+// 		series: normaliseSeriesSlug(post.data.series),
+// 		seriesOrder: post.data.seriesOrder,
+// 	}));
+// const ordered = orderSeriesMembers(members);
+
+// const statusLabel =
+// 	series.data.status === "completed"
+// 		? i18n(I18nKey.seriesStatusCompleted)
+// 		: i18n(I18nKey.seriesStatusOngoing);
+// const subtitle = `${statusLabel} · ${ordered.length} ${i18n(I18nKey.postsCount)}`;
 ---
+
+<!--
 
 <MainGridLayout title={series.data.title} description={subtitle} page="series">
 	{markdownStylesheetAssets.map(({ pack, css }) => (
@@ -196,3 +203,5 @@ const subtitle = `${statusLabel} · ${ordered.length} ${i18n(I18nKey.postsCount)
 		color: var(--on-surface-variant)
 		font: var(--m3e-type-body-large)
 </style>
+
+-->

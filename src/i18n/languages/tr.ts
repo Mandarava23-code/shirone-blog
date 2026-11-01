@@ -21,6 +21,8 @@ export const tr: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "Görsel Hosting",
+
 	[Key.moments]: "Anlar",
 	[Key.momentsNoResults]: "Filtrelerle eşleşen an yok",
 	[Key.momentsBanner]: "Kısa notlar — hayat, iş ve küçük mutluluklar.",
@@ -156,16 +158,17 @@ export const tr: Translation = {
 
 	[Key.tags]: "Taglar",
 	[Key.categories]: "Katagoriler",
-	[Key.series]: "Seri",
-	[Key.seriesCount]: "seri",
-	[Key.seriesCounts]: "seri",
-	[Key.seriesStatusOngoing]: "Devam ediyor",
-	[Key.seriesStatusCompleted]: "Tamamlandı",
-	[Key.seriesPartOf]: "Bu yazı serinin bir parçası",
-	[Key.seriesPart]: "{total} bölümün {index}. bölümü",
-	[Key.seriesPrevInSeries]: "Seride önceki",
-	[Key.seriesNextInSeries]: "Seride sonraki",
-	[Key.seriesViewAll]: "Tüm serileri görüntüle",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "Seri",
+	// [Key.seriesCount]: "seri",
+	// [Key.seriesCounts]: "seri",
+	// [Key.seriesStatusOngoing]: "Devam ediyor",
+	// [Key.seriesStatusCompleted]: "Tamamlandı",
+	// [Key.seriesPartOf]: "Bu yazı serinin bir parçası",
+	// [Key.seriesPart]: "{total} bölümün {index}. bölümü",
+	// [Key.seriesPrevInSeries]: "Seride önceki",
+	// [Key.seriesNextInSeries]: "Seride sonraki",
+	// [Key.seriesViewAll]: "Tüm serileri görüntüle",
 	[Key.recentPosts]: "Son Paylaşımlar",
 	[Key.tableOfContents]: "İçindekiler",
 	[Key.formulaScrollable]: "Yatay kaydırılabilir formül",

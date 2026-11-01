@@ -17,7 +17,6 @@ SideBar 通过 `src/config/sidebarConfig.ts` 中的 `components` 数组动态编
 | `profile` | `Profile` | top | 博主资料卡片（头像 + 名字 + 简介 + 社交链接） |
 | `categories` | `Categories` | sticky | 分类列表（按文章数降序，支持 `collapseAfter`） |
 | `tags` | `Tags` | sticky | 标签列表（按文章数降序，支持 `collapseAfter`） |
-| `series` | `Series` | sticky | 系列列表（按最近更新排序，支持 `collapseAfter`；受 `seriesConfig.enable` 控制） |
 | `announcement` | `Announcement` | top | 独立公告卡片（由 `announcementConfig.ts` 驱动） |
 | `stats` | `SiteStats` | top | 站点统计规格表 |
 | `calendar` | `Calendar` | sticky | 月度文章历（SSR 直出 + 水合岛） |
@@ -82,7 +81,7 @@ interface SidebarWidgetBase {
 
 - **数据源**：`src/utils/site-stats.ts`（总字数、文章数、运行天数等备忘化计算）；
 - **渲染**：`WidgetLayout` 外壳 + 键值对网格；
-- **功能门控**：动态行仅在 `momentsConfig.enable` 为真时统计并产出，关闭动态页后整行消失（与 `seriesConfig.enable` 的门控方式一致）；
+- **功能门控**：动态行仅在 `momentsConfig.enable` 为真时统计并产出，关闭动态页后整行消失（与其他可选功能开关的门控方式一致）；
 - **页面范围**：通常在首页与归档页显示。
 
 ---
@@ -121,12 +120,17 @@ interface SidebarWidgetBase {
 
 ---
 
+## 11. （已停用）Series — 系列列表
+
+<!-- 系列（series）功能已于 2026-11 整体移除：`type: "series"` 分支、`Series` widget 与
+     `seriesConfig` 均已注释停用，原始实现保留在对应源码文件的注释中。
+
 ## 11. Series — 系列列表
 
 - **数据源**：`src/utils/content-utils.ts` 的 `getSeriesCatalog()`（系列实体）+ `getSortedPostsList()`（统计每系列篇数与最近更新时间）；
 - **渲染**：`WidgetLayout` 外壳 + 复用数据驱动的 `CategoryList` 原子（名称 + 数量徽标），按最近更新降序；超出 `collapseAfter`（默认 5）时在卡片底部给出「查看全部系列」入口指向 `/series/`；
 - **开关**：受 `src/config/seriesConfig.ts` 的 `enable` 门控——关闭时连取数都跳过，且不产出任何 DOM；站点没有任何系列实体时同样不渲染（零额外负担）；
-- **页面范围**：默认条目 `pages` 覆盖常规内容页，不含 `"series"` 自身页面（避免系列页上重复列出系列）。
+- **页面范围**：默认条目 `pages` 覆盖常规内容页，不含 `"series"` 自身页面（避免系列页上重复列出系列）。 -->
 
 ---
 

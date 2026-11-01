@@ -161,6 +161,28 @@ describe("content sync", () => {
 		}
 	});
 
+	it("内容仓 .gitignore 忽略的路径不参与物化", () => {
+		const fixture = createFixture();
+		try {
+			initRepo(fixture.content);
+			write(fixture.content, "content/posts/.gitignore", "临时\n");
+			write(fixture.content, "content/posts/临时/未完成.md", "**CONTENT**");
+			write(fixture.content, "content/posts/kept.md", "# kept");
+			commitAll(fixture.content);
+
+			const { stdout } = runSync(fixture);
+
+			// 被忽略的笔记既不物化，也不出现在 Astro 的扫描范围里。
+			assert.ok(!exists(fixture, "src/content/posts/临时/未完成.md"));
+			assert.equal(read(fixture, "src/content/posts/kept.md"), "# kept");
+			assert.match(stdout, /skipped \d+ gitignored/);
+			// ignored 只用于日志，不进入 content.lock.json 的挂载统计。
+			assert.ok(!("ignored" in readLock(fixture).mounts["src/content"]));
+		} finally {
+			rmSync(fixture.base, { recursive: true, force: true });
+		}
+	});
+
 	it("裁剪只发生在内容仓拥有的顶层段内", () => {
 		const fixture = createFixture();
 		try {

@@ -3,8 +3,9 @@ title: Markdown Example
 published: 2023-10-01
 description: A simple example of a Markdown blog post.
 tags: [Markdown, Blogging, Demo]
-series: markdown-syntax-guide
-seriesOrder: 1
+# 系列（series）功能已停用（2026-11）：原 frontmatter 保留如下
+# series: markdown-syntax-guide
+# seriesOrder: 1
 category: Examples
 draft: false
 ---

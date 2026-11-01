@@ -7,22 +7,23 @@ import { fileURLToPath } from "node:url";
  * Materialize the sample content that the Playwright suite was written against.
  *
  * The blog itself no longer ships `src/content/posts/*` sample articles. Tests
- * still need deterministic routes such as `/posts/guide/` and
- * `/series/markdown-syntax-guide/`, so the fixtures live under
- * `tests/fixtures/content/` and are copied into the real content tree for the
- * duration of a test run.
+ * still need deterministic routes such as `/posts/guide/`, so the fixtures live
+ * under `tests/fixtures/content/` and are copied into the real content tree for
+ * the duration of a test run.
  *
  * A marker file records only the entries this helper created. Teardown removes
- * exactly those entries, so real posts and series are never deleted. Existing
- * files are skipped (and never recorded), so a user-authored post with the same
- * slug wins over the fixture.
+ * exactly those entries, so real posts are never deleted. Existing files are
+ * skipped (and never recorded), so a user-authored post with the same slug wins
+ * over the fixture.
  */
 
 const ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const FIXTURES = path.join(ROOT, "tests", "fixtures", "content");
 const CONTENT = path.join(ROOT, "src", "content");
 const MARKER = path.join(CONTENT, ".playwright-content-fixtures.json");
-const MOUNTS = ["posts", "series", "snippets"] as const;
+// 系列（series）功能已停用（2026-11）：不再物化 series 样例
+// const MOUNTS = ["posts", "series", "snippets"] as const;
+const MOUNTS = ["posts", "snippets"] as const;
 
 interface Marker {
 	version: 1;

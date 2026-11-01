@@ -20,6 +20,8 @@ export const zh_TW: Translation = {
 
 	[Key.travelling]: "開往",
 
+	[Key.imageHost]: "圖床",
+
 	[Key.moments]: "動態",
 	[Key.momentsNoResults]: "沒有符合條件的動態",
 	[Key.momentsBanner]: "隨手記錄的碎碎念 —— 生活、折騰與一切小確幸。",
@@ -147,16 +149,17 @@ export const zh_TW: Translation = {
 
 	[Key.tags]: "標籤",
 	[Key.categories]: "分類",
-	[Key.series]: "系列",
-	[Key.seriesCount]: "個系列",
-	[Key.seriesCounts]: "個系列",
-	[Key.seriesStatusOngoing]: "連載中",
-	[Key.seriesStatusCompleted]: "已完結",
-	[Key.seriesPartOf]: "本文屬於系列",
-	[Key.seriesPart]: "第 {index} 篇，共 {total} 篇",
-	[Key.seriesPrevInSeries]: "系列內上一篇",
-	[Key.seriesNextInSeries]: "系列內下一篇",
-	[Key.seriesViewAll]: "查看全部系列",
+	// 系列（series）功能已停用（2026-11）：詞條與 I18nKey 同步註釋，恢復時成對取消註釋
+	// [Key.series]: "系列",
+	// [Key.seriesCount]: "個系列",
+	// [Key.seriesCounts]: "個系列",
+	// [Key.seriesStatusOngoing]: "連載中",
+	// [Key.seriesStatusCompleted]: "已完結",
+	// [Key.seriesPartOf]: "本文屬於系列",
+	// [Key.seriesPart]: "第 {index} 篇，共 {total} 篇",
+	// [Key.seriesPrevInSeries]: "系列內上一篇",
+	// [Key.seriesNextInSeries]: "系列內下一篇",
+	// [Key.seriesViewAll]: "查看全部系列",
 	[Key.recentPosts]: "最新文章",
 	[Key.tableOfContents]: "文章目錄",
 	[Key.formulaScrollable]: "可橫向捲動的公式",

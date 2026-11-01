@@ -74,7 +74,6 @@ widget 的专属配置（如分类的折叠阈值 `collapseAfter`）只存在于
 | `"about"` | 关于页（`about.astro`） |
 | `"categories"` | 分类索引页（`categories.astro`） |
 | `"tags"` | 标签索引页（`tags.astro`） |
-| `"series"` | 系列索引与详情页（`series.astro`、`series/[slug]/index.astro`） |
 | `"rss"` | RSS 订阅指南页（`rss.astro`） |
 | `"atom"` | Atom 订阅指南页（`atom.astro`） |
 | `"post"` | 文章详情页（`posts/[...slug].astro`、`[...permalink].astro`） |
@@ -185,7 +184,6 @@ export const sidebarConfig: SidebarConfig = {
 | `profile` | `Profile`（organisms） | `profileConfig` | 无（自带头像卡） | — |
 | `categories` | `Categories` | `getCategoryList` | `WidgetLayout` | `collapseAfter?`（默认 5） |
 | `tags` | `Tags` | `getTagList` | `WidgetLayout` | `collapseAfter?`（默认 20） |
-| `series` | `Series` | `getSeriesCatalog` + `getSortedPostsList` | `WidgetLayout` | `collapseAfter?`（默认 5）；受 `seriesConfig.enable` 控制，无系列实体时不渲染 |
 | `announcement` | `Announcement` | `announcementConfig` | 无（Banner round） | — |
 | `stats` | `SiteStats` | `getSiteStats` | `WidgetLayout` | — |
 | `calendar` | `Calendar` | `getCalendarData` | `WidgetLayout` | `startOfWeek?`（默认 `"mon"`） |

@@ -21,6 +21,8 @@ export const ja: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "画像ホスト",
+
 	[Key.moments]: "モーメンツ",
 	[Key.momentsNoResults]: "条件に一致するモーメンツはありません",
 	[Key.momentsBanner]:
@@ -153,16 +155,17 @@ export const ja: Translation = {
 
 	[Key.tags]: "タグ",
 	[Key.categories]: "カテゴリ",
-	[Key.series]: "シリーズ",
-	[Key.seriesCount]: "シリーズ",
-	[Key.seriesCounts]: "シリーズ",
-	[Key.seriesStatusOngoing]: "連載中",
-	[Key.seriesStatusCompleted]: "完結",
-	[Key.seriesPartOf]: "この記事はシリーズの一部です",
-	[Key.seriesPart]: "全 {total} 話中 {index} 話目",
-	[Key.seriesPrevInSeries]: "シリーズ内の前の記事",
-	[Key.seriesNextInSeries]: "シリーズ内の次の記事",
-	[Key.seriesViewAll]: "すべてのシリーズを見る",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "シリーズ",
+	// [Key.seriesCount]: "シリーズ",
+	// [Key.seriesCounts]: "シリーズ",
+	// [Key.seriesStatusOngoing]: "連載中",
+	// [Key.seriesStatusCompleted]: "完結",
+	// [Key.seriesPartOf]: "この記事はシリーズの一部です",
+	// [Key.seriesPart]: "全 {total} 話中 {index} 話目",
+	// [Key.seriesPrevInSeries]: "シリーズ内の前の記事",
+	// [Key.seriesNextInSeries]: "シリーズ内の次の記事",
+	// [Key.seriesViewAll]: "すべてのシリーズを見る",
 	[Key.recentPosts]: "最近の投稿",
 	[Key.tableOfContents]: "目次",
 	[Key.formulaScrollable]: "横スクロール可能な数式",

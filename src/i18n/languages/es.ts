@@ -21,6 +21,8 @@ export const es: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "Imágenes",
+
 	[Key.moments]: "Momentos",
 	[Key.momentsNoResults]: "No hay momentos que coincidan con los filtros",
 	[Key.momentsBanner]: "Notas cortas — vida, trabajo y pequeñas alegrías.",
@@ -156,16 +158,17 @@ export const es: Translation = {
 
 	[Key.tags]: "Etiquetas",
 	[Key.categories]: "Categorías",
-	[Key.series]: "Series",
-	[Key.seriesCount]: "serie",
-	[Key.seriesCounts]: "series",
-	[Key.seriesStatusOngoing]: "En curso",
-	[Key.seriesStatusCompleted]: "Completado",
-	[Key.seriesPartOf]: "Esta publicación es parte de la serie",
-	[Key.seriesPart]: "Parte {index} de {total}",
-	[Key.seriesPrevInSeries]: "Anterior en la serie",
-	[Key.seriesNextInSeries]: "Siguiente en la serie",
-	[Key.seriesViewAll]: "Ver todas las series",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "Series",
+	// [Key.seriesCount]: "serie",
+	// [Key.seriesCounts]: "series",
+	// [Key.seriesStatusOngoing]: "En curso",
+	// [Key.seriesStatusCompleted]: "Completado",
+	// [Key.seriesPartOf]: "Esta publicación es parte de la serie",
+	// [Key.seriesPart]: "Parte {index} de {total}",
+	// [Key.seriesPrevInSeries]: "Anterior en la serie",
+	// [Key.seriesNextInSeries]: "Siguiente en la serie",
+	// [Key.seriesViewAll]: "Ver todas las series",
 	[Key.recentPosts]: "Publicaciones recientes",
 	[Key.tableOfContents]: "Tabla de contenidos",
 	[Key.formulaScrollable]: "Fórmula con desplazamiento horizontal",

@@ -5,10 +5,11 @@
  */
 import { render } from "astro:content";
 import { momentsConfig } from "../config/momentsConfig.ts";
-import { seriesConfig } from "../config/seriesConfig.ts";
+// 系列（series）功能已停用（2026-11）：配置与取数导入一并注释
+// import { seriesConfig } from "../config/seriesConfig.ts";
 import {
 	getCategoryList,
-	getSeriesCatalog,
+	// getSeriesCatalog,
 	getSortedMoments,
 	getSortedPosts,
 	getTagList,
@@ -20,8 +21,8 @@ export interface SiteStats {
 	moments: number;
 	categories: number;
 	tags: number;
-	/** 系列实体数 */
-	series: number;
+	// 系列实体数（系列功能已停用，2026-11）
+	// series: number;
 	/** 全部文章 remark 字数之和 */
 	words: number;
 	/** 运行天数：以最早一篇文章的发布日为起点（无文章则 0） */
@@ -37,14 +38,14 @@ let cache: SiteStats | null = null;
 export async function getSiteStats(): Promise<SiteStats> {
 	if (cache) return cache;
 
-	const [posts, moments, categories, tags, seriesCatalog] = await Promise.all([
+	const [posts, moments, categories, tags] = await Promise.all([
 		getSortedPosts(),
 		// 功能关闭时不查集合（SiteStats 也不产出动态行）
 		momentsConfig.enable ? getSortedMoments() : Promise.resolve(null),
 		getCategoryList(),
 		getTagList(),
-		// 功能关闭时不查集合（SiteStats 也不产出系列行）
-		seriesConfig.enable ? getSeriesCatalog() : Promise.resolve(null),
+		// 系列功能已停用（2026-11）：不再查询系列集合
+		// seriesConfig.enable ? getSeriesCatalog() : Promise.resolve(null),
 	]);
 
 	// 总字数、最早发布日与最近更新日来自同一批文章，一次遍历
@@ -67,8 +68,8 @@ export async function getSiteStats(): Promise<SiteStats> {
 		moments: moments?.length ?? 0,
 		categories: categories.length,
 		tags: tags.length,
-		/** 系列实体数（功能关闭时为 0，SiteStats 不产出该行） */
-		series: seriesCatalog?.size ?? 0,
+		// /** 系列实体数（功能关闭时为 0，SiteStats 不产出该行） */
+		// series: seriesCatalog?.size ?? 0,
 		words,
 		days: Number.isFinite(earliest)
 			? Math.max(0, Math.floor((Date.now() - earliest) / DAY_MS))

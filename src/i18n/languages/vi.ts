@@ -21,6 +21,8 @@ export const vi: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "Lưu trữ ảnh",
+
 	[Key.moments]: "Khoảnh khắc",
 	[Key.momentsNoResults]: "Không có khoảnh khắc nào khớp bộ lọc",
 	[Key.momentsBanner]:
@@ -157,16 +159,17 @@ export const vi: Translation = {
 
 	[Key.tags]: "Thẻ",
 	[Key.categories]: "Danh mục",
-	[Key.series]: "Loạt bài",
-	[Key.seriesCount]: "loạt bài",
-	[Key.seriesCounts]: "loạt bài",
-	[Key.seriesStatusOngoing]: "Đang tiếp tục",
-	[Key.seriesStatusCompleted]: "Đã hoàn thành",
-	[Key.seriesPartOf]: "Bài viết này thuộc loạt bài",
-	[Key.seriesPart]: "Phần {index} / {total}",
-	[Key.seriesPrevInSeries]: "Bài trước trong loạt bài",
-	[Key.seriesNextInSeries]: "Bài tiếp theo trong loạt bài",
-	[Key.seriesViewAll]: "Xem tất cả loạt bài",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "Loạt bài",
+	// [Key.seriesCount]: "loạt bài",
+	// [Key.seriesCounts]: "loạt bài",
+	// [Key.seriesStatusOngoing]: "Đang tiếp tục",
+	// [Key.seriesStatusCompleted]: "Đã hoàn thành",
+	// [Key.seriesPartOf]: "Bài viết này thuộc loạt bài",
+	// [Key.seriesPart]: "Phần {index} / {total}",
+	// [Key.seriesPrevInSeries]: "Bài trước trong loạt bài",
+	// [Key.seriesNextInSeries]: "Bài tiếp theo trong loạt bài",
+	// [Key.seriesViewAll]: "Xem tất cả loạt bài",
 	[Key.recentPosts]: "Bài viết mới nhất",
 	[Key.tableOfContents]: "Mục lục",
 	[Key.formulaScrollable]: "Công thức có thể cuộn ngang",

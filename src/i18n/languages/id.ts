@@ -21,6 +21,8 @@ export const id: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "Hosting Gambar",
+
 	[Key.moments]: "Momen",
 	[Key.momentsNoResults]: "Tidak ada momen yang cocok dengan filter",
 	[Key.momentsBanner]:
@@ -158,16 +160,17 @@ export const id: Translation = {
 
 	[Key.tags]: "Tag",
 	[Key.categories]: "Kategori",
-	[Key.series]: "Seri",
-	[Key.seriesCount]: "seri",
-	[Key.seriesCounts]: "seri",
-	[Key.seriesStatusOngoing]: "Berjalan",
-	[Key.seriesStatusCompleted]: "Selesai",
-	[Key.seriesPartOf]: "Tulisan ini bagian dari seri",
-	[Key.seriesPart]: "Bagian {index} dari {total}",
-	[Key.seriesPrevInSeries]: "Sebelumnya di seri",
-	[Key.seriesNextInSeries]: "Berikutnya di seri",
-	[Key.seriesViewAll]: "Lihat semua seri",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "Seri",
+	// [Key.seriesCount]: "seri",
+	// [Key.seriesCounts]: "seri",
+	// [Key.seriesStatusOngoing]: "Berjalan",
+	// [Key.seriesStatusCompleted]: "Selesai",
+	// [Key.seriesPartOf]: "Tulisan ini bagian dari seri",
+	// [Key.seriesPart]: "Bagian {index} dari {total}",
+	// [Key.seriesPrevInSeries]: "Sebelumnya di seri",
+	// [Key.seriesNextInSeries]: "Berikutnya di seri",
+	// [Key.seriesViewAll]: "Lihat semua seri",
 	[Key.recentPosts]: "Postingan Terbaru",
 	[Key.tableOfContents]: "Daftar Isi",
 	[Key.formulaScrollable]: "Rumus yang dapat digulir secara horizontal",

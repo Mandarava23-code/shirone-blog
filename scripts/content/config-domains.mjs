@@ -200,12 +200,14 @@ export const CONFIG_DOMAINS = Object.freeze([
 		type: "I18nConfig",
 		module: "@/types/i18nConfig",
 	},
-	{
-		key: "series",
-		file: "series",
-		type: "SeriesConfig",
-		module: "@/types/seriesConfig",
-	},
+	// 系列（series）功能已停用（2026-11）：配置域保留如下，恢复时取消注释
+	// （同时恢复 @/types/seriesConfig 与 src/config/seriesConfig.ts）
+	// {
+	// 	key: "series",
+	// 	file: "series",
+	// 	type: "SeriesConfig",
+	// 	module: "@/types/seriesConfig",
+	// },
 	{
 		// 导航项要引用 LinkPresets 并调用 i18n()，无法用「默认值 ⊕ 覆盖」表达，
 		// 因此走整体替换的中间形态，由 resolveNavBarLinks() 在代码仓侧还原。

@@ -9,7 +9,8 @@ module.exports = {
 				"http://127.0.0.1:4321/archive/",
 				"http://127.0.0.1:4321/moments/",
 				"http://127.0.0.1:4321/about/",
-				"http://127.0.0.1:4321/series/",
+				// 系列（series）功能已停用（2026-11）：/series/ 页面不再生成
+				// "http://127.0.0.1:4321/series/",
 				"http://127.0.0.1:4321/categories/",
 			],
 			numberOfRuns: 3,

@@ -143,10 +143,6 @@
     "./.vscode/schemas/games.schema.json": [
       "config/games.yaml",
       "config/games.yml"
-    ],
-    "./.vscode/schemas/series.schema.json": [
-      "config/series.yaml",
-      "config/series.yml"
     ]
   }
 }

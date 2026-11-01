@@ -1,71 +1,78 @@
 ---
-/**
- * 系列索引页：全部系列的总览入口。系列是文章之上的概念，
- * 每个系列一张通栏大卡片：图标 + 名称 + 状态徽标 + 篇数/最近更新/默认分类 +
- * 总览摘要；整卡点击进入系列页（/series/<slug>/）。
+/** src/pages/_series.astro：系列（series）功能已整体停用（2026-11）。
+ * 下方保留原始实现（逐行注释），恢复时去掉行首的 `// ` 即可；
+ * 模板部分包在 HTML 注释里，恢复时同时去掉 `<!--` / `-->` 两行。
  */
-import Card from "@components/atoms/display/Card.svelte";
-import MetaIcon from "@components/atoms/display/MetaIcon.astro";
-import PageHeader from "@components/atoms/display/PageHeader.astro";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { seriesConfig } from "@/config";
 
-if (!seriesConfig.enable) {
-	return Astro.redirect("/404/");
-}
+// /**
+//  * 系列索引页：全部系列的总览入口。系列是文章之上的概念，
+//  * 每个系列一张通栏大卡片：图标 + 名称 + 状态徽标 + 篇数/最近更新/默认分类 +
+//  * 总览摘要；整卡点击进入系列页（/series/<slug>/）。
+//  */
+// import Card from "@components/atoms/display/Card.svelte";
+// import MetaIcon from "@components/atoms/display/MetaIcon.astro";
+// import PageHeader from "@components/atoms/display/PageHeader.astro";
+// import I18nKey from "@i18n/i18nKey";
+// import { i18n } from "@i18n/translation";
+// import MainGridLayout from "@layouts/MainGridLayout.astro";
+// import { seriesConfig } from "@/config";
 
-import { getSeriesCatalog, getSortedPostsList } from "@utils/content-utils";
-import { formatDateToYYYYMMDD } from "@utils/date-utils";
-import { resolveI18nText } from "@utils/i18n-utils";
-import { excerptFromMarkdown, normaliseSeriesSlug } from "@utils/series-utils";
-import { getSeriesUrl } from "@utils/url-utils";
+// if (!seriesConfig.enable) {
+// 	return Astro.redirect("/404/");
+// }
 
-interface SeriesIndexItem {
-	slug: string;
-	title: string;
-	status: "ongoing" | "completed";
-	count: number;
-	latest: Date | null;
-	/** 系列默认分类（可空） */
-	category: string;
-	/** 总览摘要（可空 = 系列未写总览） */
-	overview: string;
-}
+// import { getSeriesCatalog, getSortedPostsList } from "@utils/content-utils";
+// import { formatDateToYYYYMMDD } from "@utils/date-utils";
+// import { resolveI18nText } from "@utils/i18n-utils";
+// import { excerptFromMarkdown, normaliseSeriesSlug } from "@utils/series-utils";
+// import { getSeriesUrl } from "@utils/url-utils";
 
-const catalog = await getSeriesCatalog();
-const posts = await getSortedPostsList();
+// interface SeriesIndexItem {
+// 	slug: string;
+// 	title: string;
+// 	status: "ongoing" | "completed";
+// 	count: number;
+// 	latest: Date | null;
+// 	/** 系列默认分类（可空） */
+// 	category: string;
+// 	/** 总览摘要（可空 = 系列未写总览） */
+// 	overview: string;
+// }
 
-const items: SeriesIndexItem[] = [];
-for (const [slug, entity] of catalog) {
-	const members = posts.filter(
-		(post) => normaliseSeriesSlug(post.data.series) === slug,
-	);
-	const latest = members.reduce<Date | null>((acc, post) => {
-		const published = post.data.published;
-		return acc === null || published > acc ? published : acc;
-	}, null);
-	items.push({
-		slug,
-		title: entity.data.title,
-		status: entity.data.status,
-		count: members.length,
-		latest,
-		category: entity.data.defaultCategory.trim(),
-		overview: excerptFromMarkdown(entity.body ?? ""),
-	});
-}
-items.sort((a, b) => (b.latest?.getTime() ?? 0) - (a.latest?.getTime() ?? 0));
+// const catalog = await getSeriesCatalog();
+// const posts = await getSortedPostsList();
 
-const totalPosts = items.reduce((sum, item) => sum + item.count, 0);
-const seriesSummary = `${items.length} ${i18n(items.length === 1 ? I18nKey.seriesCount : I18nKey.seriesCounts)} · ${totalPosts} ${i18n(I18nKey.postsCount)}`;
-const pageTitle = resolveI18nText(seriesConfig.title, I18nKey.series);
-// 描述：未配置时退回动态汇总；配置了（$t: 或字面量）则整体替换
-const pageDescription = seriesConfig.description
-	? resolveI18nText(seriesConfig.description)
-	: seriesSummary;
+// const items: SeriesIndexItem[] = [];
+// for (const [slug, entity] of catalog) {
+// 	const members = posts.filter(
+// 		(post) => normaliseSeriesSlug(post.data.series) === slug,
+// 	);
+// 	const latest = members.reduce<Date | null>((acc, post) => {
+// 		const published = post.data.published;
+// 		return acc === null || published > acc ? published : acc;
+// 	}, null);
+// 	items.push({
+// 		slug,
+// 		title: entity.data.title,
+// 		status: entity.data.status,
+// 		count: members.length,
+// 		latest,
+// 		category: entity.data.defaultCategory.trim(),
+// 		overview: excerptFromMarkdown(entity.body ?? ""),
+// 	});
+// }
+// items.sort((a, b) => (b.latest?.getTime() ?? 0) - (a.latest?.getTime() ?? 0));
+
+// const totalPosts = items.reduce((sum, item) => sum + item.count, 0);
+// const seriesSummary = `${items.length} ${i18n(items.length === 1 ? I18nKey.seriesCount : I18nKey.seriesCounts)} · ${totalPosts} ${i18n(I18nKey.postsCount)}`;
+// const pageTitle = resolveI18nText(seriesConfig.title, I18nKey.series);
+// // 描述：未配置时退回动态汇总；配置了（$t: 或字面量）则整体替换
+// const pageDescription = seriesConfig.description
+// 	? resolveI18nText(seriesConfig.description)
+// 	: seriesSummary;
 ---
+
+<!--
 
 <MainGridLayout title={pageTitle} description={pageDescription} page="series">
 	<Card color="var(--card-bg)" radius="l" class="series-index px-8 py-6">
@@ -209,3 +216,5 @@ const pageDescription = seriesConfig.description
 		color: var(--on-surface-variant)
 		font: var(--m3e-type-body-large)
 </style>
+
+-->

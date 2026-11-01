@@ -21,6 +21,8 @@ export const en: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "Image Host",
+
 	[Key.moments]: "Moments",
 	[Key.momentsNoResults]: "No moments matched your filters",
 	[Key.momentsBanner]:
@@ -155,16 +157,17 @@ export const en: Translation = {
 
 	[Key.tags]: "Tags",
 	[Key.categories]: "Categories",
-	[Key.series]: "Series",
-	[Key.seriesCount]: "series",
-	[Key.seriesCounts]: "series",
-	[Key.seriesStatusOngoing]: "Ongoing",
-	[Key.seriesStatusCompleted]: "Completed",
-	[Key.seriesPartOf]: "This post is part of the series",
-	[Key.seriesPart]: "Part {index} of {total}",
-	[Key.seriesPrevInSeries]: "Previous in series",
-	[Key.seriesNextInSeries]: "Next in series",
-	[Key.seriesViewAll]: "View all series",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "Series",
+	// [Key.seriesCount]: "series",
+	// [Key.seriesCounts]: "series",
+	// [Key.seriesStatusOngoing]: "Ongoing",
+	// [Key.seriesStatusCompleted]: "Completed",
+	// [Key.seriesPartOf]: "This post is part of the series",
+	// [Key.seriesPart]: "Part {index} of {total}",
+	// [Key.seriesPrevInSeries]: "Previous in series",
+	// [Key.seriesNextInSeries]: "Next in series",
+	// [Key.seriesViewAll]: "View all series",
 	[Key.recentPosts]: "Recent Posts",
 	[Key.tableOfContents]: "Table of Contents",
 	[Key.formulaScrollable]: "Horizontally scrollable formula",

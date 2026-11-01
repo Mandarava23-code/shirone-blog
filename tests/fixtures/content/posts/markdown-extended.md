@@ -5,8 +5,9 @@ updated: 2024-11-29
 description: 'Read more about Markdown features in Fuwari'
 image: ''
 tags: [Demo, Example, Markdown, Fuwari]
-series: markdown-syntax-guide
-seriesOrder: 2
+# 系列（series）功能已停用（2026-11）：原 frontmatter 保留如下
+# series: markdown-syntax-guide
+# seriesOrder: 2
 draft: false 
 ---
 

@@ -1,63 +1,70 @@
 ---
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import Icon from "@iconify/svelte";
-import type { SeriesPostContext, SeriesPostRef } from "@utils/series-utils";
-import { getPostUrlBySlug, getSeriesUrl } from "@utils/url-utils";
-
-/**
- * 文章内系列导航（纯 SSR）。
- * 视觉语言与它上方的 ArticleDiscovery 保持一致：不套容器背景
- * （DESIGN.md 禁止卡片套卡片 / 把卡片当通用分节外壳），用「图标 + 标题 + 横线」
- * 的 lane 标题建立分节，条目是「标题 + 元信息」的整行状态层链接。
- * 上一/下一篇沿用文章末尾全局 post-nav 的方向语言（箭头在外侧、hover 位移）；
- * 状态 pill 使用 M3 tonal 配对（与 GameCard 的状态语言一致）。
+/** src/components/molecules/SeriesCard.astro：系列（series）功能已整体停用（2026-11）。
+ * 下方保留原始实现（逐行注释），恢复时去掉行首的 `// ` 即可；
+ * 模板部分包在 HTML 注释里，恢复时同时去掉 `<!--` / `-->` 两行。
  */
-interface Props {
-	context: SeriesPostContext;
-	class?: string;
-}
 
-const { context, class: className = "" } = Astro.props;
+// import I18nKey from "@i18n/i18nKey";
+// import { i18n } from "@i18n/translation";
+// import Icon from "@iconify/svelte";
+// import type { SeriesPostContext, SeriesPostRef } from "@utils/series-utils";
+// import { getPostUrlBySlug, getSeriesUrl } from "@utils/url-utils";
 
-// `seriesPart` 的 `{index}` / `{total}` 在 10 种语言中同名；这里给数字加粗
-const partMessage = i18n(I18nKey.seriesPart).split(/(\{index\}|\{total\})/g);
-const statusLabel =
-	context.status === "completed"
-		? i18n(I18nKey.seriesStatusCompleted)
-		: i18n(I18nKey.seriesStatusOngoing);
+// /**
+//  * 文章内系列导航（纯 SSR）。
+//  * 视觉语言与它上方的 ArticleDiscovery 保持一致：不套容器背景
+//  * （DESIGN.md 禁止卡片套卡片 / 把卡片当通用分节外壳），用「图标 + 标题 + 横线」
+//  * 的 lane 标题建立分节，条目是「标题 + 元信息」的整行状态层链接。
+//  * 上一/下一篇沿用文章末尾全局 post-nav 的方向语言（箭头在外侧、hover 位移）；
+//  * 状态 pill 使用 M3 tonal 配对（与 GameCard 的状态语言一致）。
+//  */
+// interface Props {
+// 	context: SeriesPostContext;
+// 	class?: string;
+// }
 
-const headingId = `series-card-title-${context.slug}`;
-// 相邻篇章与前/后位次一一对应，可直接由当前位置换算
-const partLabel = (index: number) =>
-	i18n(I18nKey.seriesPart)
-		.replace("{index}", String(index))
-		.replace("{total}", String(context.total));
+// const { context, class: className = "" } = Astro.props;
 
-const neighbours: {
-	ref: SeriesPostRef;
-	direction: "prev" | "next";
-	index: number;
-}[] = [];
-if (context.prev) {
-	neighbours.push({
-		ref: context.prev,
-		direction: "prev",
-		index: context.index - 1,
-	});
-}
-if (context.next) {
-	neighbours.push({
-		ref: context.next,
-		direction: "next",
-		index: context.index + 1,
-	});
-}
-const directionLabel = {
-	prev: I18nKey.seriesPrevInSeries,
-	next: I18nKey.seriesNextInSeries,
-} as const;
+// // `seriesPart` 的 `{index}` / `{total}` 在 10 种语言中同名；这里给数字加粗
+// const partMessage = i18n(I18nKey.seriesPart).split(/(\{index\}|\{total\})/g);
+// const statusLabel =
+// 	context.status === "completed"
+// 		? i18n(I18nKey.seriesStatusCompleted)
+// 		: i18n(I18nKey.seriesStatusOngoing);
+
+// const headingId = `series-card-title-${context.slug}`;
+// // 相邻篇章与前/后位次一一对应，可直接由当前位置换算
+// const partLabel = (index: number) =>
+// 	i18n(I18nKey.seriesPart)
+// 		.replace("{index}", String(index))
+// 		.replace("{total}", String(context.total));
+
+// const neighbours: {
+// 	ref: SeriesPostRef;
+// 	direction: "prev" | "next";
+// 	index: number;
+// }[] = [];
+// if (context.prev) {
+// 	neighbours.push({
+// 		ref: context.prev,
+// 		direction: "prev",
+// 		index: context.index - 1,
+// 	});
+// }
+// if (context.next) {
+// 	neighbours.push({
+// 		ref: context.next,
+// 		direction: "next",
+// 		index: context.index + 1,
+// 	});
+// }
+// const directionLabel = {
+// 	prev: I18nKey.seriesPrevInSeries,
+// 	next: I18nKey.seriesNextInSeries,
+// } as const;
 ---
+
+<!--
 
 <section
 	class={`series-card${className ? ` ${className}` : ""}`}
@@ -284,3 +291,5 @@ const directionLabel = {
 		&__list
 			grid-template-columns: minmax(0, 1fr)
 </style>
+
+-->

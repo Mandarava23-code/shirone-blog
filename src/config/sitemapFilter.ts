@@ -7,7 +7,8 @@ import { friendsConfig } from "./friendsConfig.ts";
 import { gamesConfig } from "./gamesConfig.ts";
 import { momentsConfig } from "./momentsConfig.ts";
 import { projectsConfig } from "./projectsConfig.ts";
-import { seriesConfig } from "./seriesConfig.ts";
+// 系列（series）功能已停用（2026-11）：配置与 sitemap 裁剪一并注释
+// import { seriesConfig } from "./seriesConfig.ts";
 import { skillsConfig } from "./skillsConfig.ts";
 import { timelineConfig } from "./timelineConfig.ts";
 
@@ -25,7 +26,8 @@ export function getDisabledPages(): string[] {
 	if (momentsConfig.enable === false) disabled.push("moments");
 	if (albumsConfig.enable === false) disabled.push("albums");
 	if (compassConfig.enable === false) disabled.push("compass");
-	if (seriesConfig.enable === false) disabled.push("series");
+	// 系列（series）功能已停用（2026-11）：/series/ 页面不再生成，无需排除
+	// if (seriesConfig.enable === false) disabled.push("series");
 	return disabled;
 }
 

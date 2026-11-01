@@ -9,7 +9,7 @@ import {
 // time, so globalSetup can only ever time out.
 const CONTENT_ROUTES = [
 	"http://localhost:4321/posts/guide/",
-	"http://localhost:4321/series/markdown-syntax-guide/",
+	// 系列（series）功能已停用（2026-11）：/series/markdown-syntax-guide/ 不再生成
 ];
 const TIMEOUT_MS = 60_000;
 const RETRY_INTERVAL_MS = 500;

@@ -21,6 +21,8 @@ export const ko: Translation = {
 
 	[Key.travelling]: "Travelling",
 
+	[Key.imageHost]: "이미지 호스트",
+
 	[Key.moments]: "모먼트",
 	[Key.momentsNoResults]: "조건에 맞는 모먼트가 없습니다",
 	[Key.momentsBanner]: "일상과 작업, 그리고 사소한 행복을 짧게 기록합니다.",
@@ -153,16 +155,17 @@ export const ko: Translation = {
 
 	[Key.tags]: "태그",
 	[Key.categories]: "카테고리",
-	[Key.series]: "시리즈",
-	[Key.seriesCount]: "시리즈",
-	[Key.seriesCounts]: "시리즈",
-	[Key.seriesStatusOngoing]: "연재 중",
-	[Key.seriesStatusCompleted]: "완결",
-	[Key.seriesPartOf]: "이 글은 시리즈의 일부입니다",
-	[Key.seriesPart]: "전체 {total}편 중 {index}편",
-	[Key.seriesPrevInSeries]: "시리즈 내 이전 글",
-	[Key.seriesNextInSeries]: "시리즈 내 다음 글",
-	[Key.seriesViewAll]: "모든 시리즈 보기",
+	// Series feature disabled (2026-11): keys commented out in sync with I18nKey; uncomment both sides to restore
+	// [Key.series]: "시리즈",
+	// [Key.seriesCount]: "시리즈",
+	// [Key.seriesCounts]: "시리즈",
+	// [Key.seriesStatusOngoing]: "연재 중",
+	// [Key.seriesStatusCompleted]: "완결",
+	// [Key.seriesPartOf]: "이 글은 시리즈의 일부입니다",
+	// [Key.seriesPart]: "전체 {total}편 중 {index}편",
+	// [Key.seriesPrevInSeries]: "시리즈 내 이전 글",
+	// [Key.seriesNextInSeries]: "시리즈 내 다음 글",
+	// [Key.seriesViewAll]: "모든 시리즈 보기",
 	[Key.recentPosts]: "최근 게시물",
 	[Key.tableOfContents]: "목차",
 	[Key.formulaScrollable]: "가로로 스크롤 가능한 수식",

@@ -9,7 +9,8 @@ import ImageWrapper from "@components/molecules/ImageWrapper.astro";
 import LastUpdatedNotice from "@components/molecules/LastUpdatedNotice.astro";
 import License from "@components/molecules/License.astro";
 import PostMetadata from "@components/molecules/PostMeta.astro";
-import SeriesCard from "@components/molecules/SeriesCard.astro";
+// 系列（series）功能已停用（2026-11）：文章内系列卡组件与渲染一并注释
+// import SeriesCard from "@components/molecules/SeriesCard.astro";
 import ArticleDiscovery from "@components/organisms/ArticleDiscovery.astro";
 import ArticleShare from "@components/organisms/ArticleShare.svelte";
 import CommentSection from "@components/organisms/comment/CommentSection.astro";
@@ -23,7 +24,7 @@ import { discoverArticles } from "@utils/article-discovery";
 import { resolveAsset } from "@utils/asset-utils";
 import { getPublishedInstant, getUpdatedInstant } from "@utils/content-date";
 import {
-	getSeriesCatalog,
+	// getSeriesCatalog,
 	getSortedPosts,
 	type PostForList,
 } from "@utils/content-utils";
@@ -35,10 +36,11 @@ import {
 	mergeMarkdownSyntaxSnapshots,
 } from "@utils/markdown-syntaxes.mjs";
 import { initPostIdMap } from "@utils/permalink-utils";
-import {
-	buildSeriesContexts,
-	type SeriesPostContext,
-} from "@utils/series-utils";
+// 系列（series）功能已停用（2026-11）
+// import {
+// 	buildSeriesContexts,
+// 	type SeriesPostContext,
+// } from "@utils/series-utils";
 import {
 	getDir,
 	getPostUrl,
@@ -57,7 +59,8 @@ import {
 	resolveCommentOptions,
 	resolveLastUpdatedNoticeOptions,
 	resolveUmamiOptions,
-	seriesConfig,
+	// 系列（series）功能已停用（2026-11）
+	// seriesConfig,
 	siteConfig,
 	umamiConfig,
 } from "@/config";
@@ -66,20 +69,20 @@ export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	initPostIdMap(blogEntries);
 
-	// 系列上下文：阅读顺序 + index/total + 组内上一篇/下一篇（仅对有系列的文章）。
-	// 功能关闭时不查集合、不构建上下文，文章页不产出任何系列 DOM（零额外负担）。
-	const seriesContexts = seriesConfig.enable
-		? buildSeriesContexts({
-				catalog: await getSeriesCatalog(),
-				posts: blogEntries.map((entry) => ({
-					slug: entry.id,
-					title: entry.data.title,
-					published: entry.data.published,
-					series: entry.data.series,
-					seriesOrder: entry.data.seriesOrder,
-				})),
-			})
-		: new Map<string, SeriesPostContext>();
+	// 系列（series）功能已停用（2026-11）：原上下文构建（阅读顺序 + index/total +
+	// 组内上一篇/下一篇，仅对有系列的文章）保留如下，恢复时取消注释
+	// const seriesContexts = seriesConfig.enable
+	// 	? buildSeriesContexts({
+	// 			catalog: await getSeriesCatalog(),
+	// 			posts: blogEntries.map((entry) => ({
+	// 				slug: entry.id,
+	// 				title: entry.data.title,
+	// 				published: entry.data.published,
+	// 				series: entry.data.series,
+	// 				seriesOrder: entry.data.seriesOrder,
+	// 			})),
+	// 		})
+	// 	: new Map<string, SeriesPostContext>();
 
 	const discoveryCandidates = blogEntries.map((entry) => ({
 		slug: entry.id,
@@ -92,7 +95,8 @@ export async function getStaticPaths() {
 		props: {
 			entry: CollectionEntry<"posts">;
 			discovery: { related: PostForList[]; random: PostForList[] };
-			series: SeriesPostContext | null;
+			// 系列（series）功能已停用（2026-11）
+			// series: SeriesPostContext | null;
 		};
 	}[] = [];
 
@@ -116,7 +120,7 @@ export async function getStaticPaths() {
 			props: {
 				entry,
 				discovery,
-				series: seriesContexts.get(entry.id) ?? null,
+				// series: seriesContexts.get(entry.id) ?? null,
 			},
 		});
 
@@ -131,7 +135,7 @@ export async function getStaticPaths() {
 					props: {
 						entry,
 						discovery,
-						series: seriesContexts.get(entry.id) ?? null,
+						// series: seriesContexts.get(entry.id) ?? null,
 					},
 				});
 			}
@@ -141,17 +145,18 @@ export async function getStaticPaths() {
 	return paths;
 }
 
-const { entry, discovery, series } = Astro.props;
-const seriesCardAtTop = seriesConfig.cardPosition !== "bottom";
+const { entry, discovery } = Astro.props;
+// 系列（series）功能已停用（2026-11）
+// const seriesCardAtTop = seriesConfig.cardPosition !== "bottom";
 const isEncrypted = Boolean(
 	entry.data.password && entry.data.password.trim().length > 0,
 );
-// 加密且隐藏首页内容的文章：元信息区已被加密徽标替代，系列卡同样不渲染，
-// 避免用系列名/相邻文章标题绕过元信息隐藏；功能关闭时同样不渲染
-const seriesCardVisible =
-	seriesConfig.enable &&
-	series !== null &&
-	!(isEncrypted && entry.data.hideHomeContent);
+// 系列（series）功能已停用（2026-11）：原「加密且隐藏首页内容时不渲染系列卡」的
+// 判定保留如下，恢复时取消注释
+// const seriesCardVisible =
+// 	seriesConfig.enable &&
+// 	series !== null &&
+// 	!(isEncrypted && entry.data.hideHomeContent);
 const scope = `post:${entry.id}`;
 
 const { Content, headings, remarkPluginFrontmatter } = await render(entry);
@@ -287,9 +292,11 @@ const jsonLd = {
 						category={entry.data.category}
 					></PostMetadata>
 				)}
+				{/* 系列（series）功能已停用（2026-11）：原系列卡（cardPosition: top）保留如下
 				{seriesCardVisible && seriesCardAtTop && series && (
 					<SeriesCard context={series} class="mb-5 onload-animation" />
 				)}
+				*/}
 				{!entry.data.image && <div class="border-[var(--outline-variant)] border-dashed border-b-[1px] mb-5"></div>}
 			</div>
 
@@ -324,12 +331,12 @@ const jsonLd = {
                 </Markdown>
             )}
 
-			{/* 系列块（cardPosition: bottom）紧贴正文之后：与 top 变体对称（元信息之后 / 正文之后），
-			    并排在版权、分享与 Continue reading 这些收尾区块之前——系列导航是「继续读」，
-			    应先于署名/分发/相关推荐（页面实际顺序：系列 → 版权 → 分享 → 延伸阅读 → 评论 → 更新提示 → 全局 post-nav） */}
+			{/* 系列（series）功能已停用（2026-11）：原系列块（cardPosition: bottom，紧贴正文之后、
+			    排在版权/分享/延伸阅读之前）保留在下方注释中，恢复时取消注释
 			{seriesCardVisible && !seriesCardAtTop && series && (
 				<SeriesCard context={series} class="mb-6 onload-animation" />
 			)}
+			*/}
 
 			{licenseConfig.enable && <License title={entry.data.title} slug={entry.id} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 

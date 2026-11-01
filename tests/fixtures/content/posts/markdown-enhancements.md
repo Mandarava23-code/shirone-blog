@@ -4,8 +4,9 @@ published: 2026-08-19
 pinned: true
 description: Explore Shirone's custom Markdown extensions, expressive components, and authoring syntax.
 tags: [Demo, Markdown, Extensions, Theme, Shirone]
-series: markdown-syntax-guide
-seriesOrder: 3
+# 系列（series）功能已停用（2026-11）：原 frontmatter 保留如下
+# series: markdown-syntax-guide
+# seriesOrder: 3
 category: Guides
 lang: en
 draft: false

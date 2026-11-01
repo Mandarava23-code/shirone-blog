@@ -90,3 +90,28 @@ test.describe("navigation feature gating", () => {
 		}
 	});
 });
+
+test.describe("external image host entry", () => {
+	test("places the image host link between categories and the compass", async ({
+		page,
+	}) => {
+		await page.goto("/", { waitUntil: "domcontentloaded" });
+
+		const link = page.locator(
+			'#navbar nav a[href="https://img.mandarava23.top"]',
+		);
+		await expect(link).toHaveCount(1);
+		await expect(link).toHaveAttribute("target", "_blank");
+		await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+
+		// 按 href 序列判断站位，不依赖站点语言；紧跟「分类」即同时位于「站点罗盘」之前。
+		const hrefs = await page
+			.locator("#navbar nav > div > a")
+			.evaluateAll((nodes) =>
+				nodes.map((node) => node.getAttribute("href") ?? ""),
+			);
+		expect(hrefs.indexOf("https://img.mandarava23.top")).toBe(
+			hrefs.indexOf("/categories/") + 1,
+		);
+	});
+});

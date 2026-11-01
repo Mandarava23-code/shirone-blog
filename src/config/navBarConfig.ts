@@ -9,7 +9,8 @@ import { friendsConfig } from "@/config/friendsConfig";
 import { gamesConfig } from "@/config/gamesConfig";
 import { momentsConfig } from "@/config/momentsConfig";
 import { projectsConfig } from "@/config/projectsConfig";
-import { seriesConfig } from "@/config/seriesConfig";
+// 系列（series）功能已停用（2026-11）：导航预设与不可用路由裁剪一并注释
+// import { seriesConfig } from "@/config/seriesConfig";
 import { skillsConfig } from "@/config/skillsConfig";
 import { timelineConfig } from "@/config/timelineConfig";
 import type {
@@ -81,6 +82,18 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:explore-rounded",
         pageKey: "compass",
     },
+    /**
+     * 图床（Image Host）外链。
+     * 站外的图片托管站点入口，顶栏常驻在「分类」与「站点罗盘」之间，
+     * 窄屏下随导航抽屉一起展示；外链新标签页打开，不参与站内高亮。
+     */
+    ImageHost: {
+        name: i18n(I18nKey.imageHost),
+        url: "https://img.mandarava23.top",
+        icon: "material-symbols:image-outline-rounded",
+        external: true,
+        pageKey: "imageHost",
+    },
     Skills: {
         name: i18n(I18nKey.skills),
         url: "/skills/",
@@ -129,12 +142,14 @@ export const LinkPresets: Record<string, NavBarLink> = {
         icon: "material-symbols:tag-rounded",
         pageKey: "tags",
     },
-    Series: {
-        name: i18n(I18nKey.series),
-        url: "/series/",
-        icon: "material-symbols:auto-stories-outline-rounded",
-        pageKey: "series",
-    },
+    // 系列（series）入口已停用（2026-11）：预设保留如下，恢复时取消注释，
+    // 并在 navBarConfig.links / children 中按需引用 LinkPresets.Series
+    // Series: {
+    //     name: i18n(I18nKey.series),
+    //     url: "/series/",
+    //     icon: "material-symbols:auto-stories-outline-rounded",
+    //     pageKey: "series",
+    // },
     About: {
         name: i18n(I18nKey.about),
         url: "/about/",
@@ -155,8 +170,10 @@ const defaultNavBarConfig: NavBarConfig = {
         LinkPresets.Home,
         LinkPresets.Archive,
         LinkPresets.Categories,
+        // 图床外链固定在「分类」与「站点罗盘」之间
+        LinkPresets.ImageHost,
         //LinkPresets.Moments,
-        LinkPresets.Anime,
+        //LinkPresets.Anime,
         //LinkPresets.Albums,
         LinkPresets.Compass,
         {
@@ -164,7 +181,7 @@ const defaultNavBarConfig: NavBarConfig = {
             icon: "material-symbols:apps-rounded",
             children: [
                 //LinkPresets.Projects,
-                LinkPresets.Devices,
+                //LinkPresets.Devices,
                 LinkPresets.Games,
                 LinkPresets.Skills,
                 LinkPresets.Timeline,
@@ -208,7 +225,8 @@ const unavailableFeatureRoutes: ReadonlySet<string> = new Set([
     ...(gamesConfig.enable ? [] : ["/games"]),
     ...(timelineConfig.enable ? [] : ["/timeline"]),
     ...(aboutConfig.enable ? [] : ["/about"]),
-    ...(seriesConfig.enable ? [] : ["/series"]),
+    // 系列（series）功能已停用（2026-11）：对应页面不再生成，无需裁剪
+    // ...(seriesConfig.enable ? [] : ["/series"]),
 ]);
 
 /**

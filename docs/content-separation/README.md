@@ -42,6 +42,8 @@
 
 **最佳平衡点**：通过 `pnpm content:sync` 在构建前进行极速的**增量同步落盘**，耗时仅需几十毫秒，既实现了“文章在独立仓库写作”的解耦诉求，又完整保留了 Astro 原生强大的全自动图片压缩与极速构建能力。
 
+**物化与 `.gitignore`**：内容仓工作区里被 git 忽略的路径（嵌套 `.gitignore` 与 `.git/info/exclude`）不会参与物化——它们不是要发布的内容，也就不该进入 `src/content/**` 被 Astro 扫描。这让 Obsidian 临时目录、导出副本等可以留在内容仓里而不触发构建期的 schema 报错。判定只采纳内容仓内部的忽略规则，仓库外的全局 `excludesFile` 不参与；内容源是普通目录（无 git）时该行为不生效。同步日志会以 `skipped N gitignored` 标注被跳过的数量。
+
 ---
 
 ## 内容仓标准目录结构
@@ -57,7 +59,6 @@ shirone-content/
 ├── content/                    # 核心内容区（映射至 src/content/）
 │   ├── posts/                  # 博客文章与配图
 │   ├── moments/                # 说说动态
-│   ├── series/                 # 系列实体（每个 <slug>.md = 一个系列；须平铺，slug 即路由段）
 │   └── spec/                   # 特殊页面
 ├── data/                       # 结构化数据（映射至 src/data/）
 │   ├── projects.ts  skills.ts  timeline.ts  devices.ts

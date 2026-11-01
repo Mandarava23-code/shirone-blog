@@ -20,6 +20,8 @@ enum I18nKey {
 	friendsCounts = "friendsCounts",
 	/** 开往（Travelling）友链接力：顶栏与导航抽屉共用的外链入口 */
 	travelling = "travelling",
+	/** 图床（Image Host）外链：顶栏与导航抽屉共用的站外入口 */
+	imageHost = "imageHost",
 
 	moments = "moments",
 	momentsNoResults = "momentsNoResults",
@@ -146,16 +148,17 @@ enum I18nKey {
 
 	tags = "tags",
 	categories = "categories",
-	series = "series",
-	seriesCount = "seriesCount",
-	seriesCounts = "seriesCounts",
-	seriesStatusOngoing = "seriesStatusOngoing",
-	seriesStatusCompleted = "seriesStatusCompleted",
-	seriesPartOf = "seriesPartOf",
-	seriesPart = "seriesPart",
-	seriesPrevInSeries = "seriesPrevInSeries",
-	seriesNextInSeries = "seriesNextInSeries",
-	seriesViewAll = "seriesViewAll",
+	// 系列（series）功能已停用（2026-11）：枚举与 10 个语言包词条同步注释，恢复时成对取消注释
+	// series = "series",
+	// seriesCount = "seriesCount",
+	// seriesCounts = "seriesCounts",
+	// seriesStatusOngoing = "seriesStatusOngoing",
+	// seriesStatusCompleted = "seriesStatusCompleted",
+	// seriesPartOf = "seriesPartOf",
+	// seriesPart = "seriesPart",
+	// seriesPrevInSeries = "seriesPrevInSeries",
+	// seriesNextInSeries = "seriesNextInSeries",
+	// seriesViewAll = "seriesViewAll",
 	recentPosts = "recentPosts",
 	tableOfContents = "tableOfContents",
 	formulaScrollable = "formulaScrollable",

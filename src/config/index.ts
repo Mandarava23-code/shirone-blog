@@ -61,7 +61,8 @@ export { permalinkConfig } from "./permalinkConfig";
 export { POST_CARD_MIN_WIDTH, postListConfig } from "./postListConfig";
 export { profileConfig } from "./profileConfig";
 export { projectsConfig } from "./projectsConfig";
-export { seriesConfig } from "./seriesConfig";
+// 系列（series）功能已停用（2026-11）：配置模块整体注释，恢复时取消注释
+// export { seriesConfig } from "./seriesConfig";
 export { sidebarConfig } from "./sidebarConfig";
 export {
 	getDefaultSpec,

@@ -54,7 +54,7 @@ themeColor:
 | `albums.yaml` | `albumsConfig` 摄影相册 | `compass.yaml` | `compassConfig` 站点罗盘 |
 | `about.yaml` | `aboutConfig` 关于页 | `games.yaml` | `gamesConfig` 游戏展示 |
 | `permalink.yaml` | `permalinkConfig` 文章固定链接 | `context-menu.yaml` | `contextMenuConfig` 桌面右键增强 |
-| `i18n.yaml` | `i18nConfig` 多语言与本地化 | `series.yaml` | `seriesConfig` 系列连载 |
+| `i18n.yaml` | `i18nConfig` 多语言与本地化 | — | 系列（`series.yaml`）已随功能停用 |
 
 各配置领域的可用字段、默认值与逐项注释均以代码仓中的 `src/config/<domain>Config.ts` 为准。系统同样支持 `.yml` 后缀；空文件与纯注释文件视作不覆盖。
 
@@ -186,7 +186,6 @@ customSections:
 | `Albums` | `/albums/` | 摄影相册与图库 |
 | `Categories` | `/categories/` | 文章分类聚合独立页 |
 | `Tags` | `/tags/` | 标签聚合独立页 |
-| `Series` | `/series/` | 系列连载聚合独立页 |
 | `About` | `/about/` | 关于博主与站点 |
 | `GitHub` | `https://github.com/...` | GitHub 外部项目外链 |
 

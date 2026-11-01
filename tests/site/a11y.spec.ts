@@ -29,11 +29,12 @@ const pages = [
 	{ name: "关于", path: "/about/" },
 	{ name: "文章页", path: "/posts/guide/" },
 	{ name: "MDX文章页", path: "/posts/mdx-showcase/" },
-	{ name: "系列文章页", path: "/posts/markdown-extended/" },
+	{ name: "扩展语法文章页", path: "/posts/markdown-extended/" },
 	{ name: "分类索引", path: "/categories/" },
 	{ name: "标签索引", path: "/tags/" },
-	{ name: "系列索引", path: "/series/" },
-	{ name: "系列详情", path: "/series/markdown-syntax-guide/" },
+	// 系列（series）功能已停用（2026-11）：对应页面不再生成
+	// { name: "系列索引", path: "/series/" },
+	// { name: "系列详情", path: "/series/markdown-syntax-guide/" },
 ];
 
 const DISABLED_RULES = ["page-has-heading-one"];

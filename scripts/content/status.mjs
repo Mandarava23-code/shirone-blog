@@ -23,6 +23,7 @@ import {
 	generateModule,
 	readConfigOverrides,
 } from "./config-overlay.mjs";
+import { collectGitIgnoredPaths } from "./gitignore.mjs";
 import {
 	canonicalGitUrl,
 	DEFAULT_MOUNTS,
@@ -749,6 +750,23 @@ if (!sourceRoot) {
 		}
 
 		const snapshot = scanDirectory(absoluteSource);
+		// 与 content:sync 一致：内容仓 `.gitignore` 忽略的路径不会物化，
+		// 状态比对与数量统计必须先排除它们，否则会误报「未物化」。
+		const ignoredPaths = collectGitIgnoredPaths(
+			sourceRoot,
+			sourceDir,
+			snapshot.files.map((file) => file.relative),
+		);
+		if (ignoredPaths.size > 0) {
+			snapshot.files = snapshot.files.filter(
+				(file) => !ignoredPaths.has(`${sourceDir}/${file.relative}`),
+			);
+			snapshot.count = snapshot.files.length;
+			snapshot.totalBytes = snapshot.files.reduce(
+				(sum, file) => sum + file.size,
+				0,
+			);
+		}
 		mountSnapshots.set(sourceDir, snapshot);
 		for (const error of snapshot.errors)
 			addError(`Cannot fully scan mount point: ${error}`);

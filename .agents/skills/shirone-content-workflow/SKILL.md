@@ -30,7 +30,8 @@ description: Operate Shirone content separation and dual-repository workflows af
 1. **日常写作与同步**：
    - 预览与构建前同步：`pnpm.cmd content:sync`（已自动接入 `dev` 与 `build` 流程首位）；
    - 边写边看实时热更新：`pnpm.cmd content:watch`（仅支持本地目录 `type: "path"`）；
-   - 状态体检与排错：`pnpm.cmd content:status`（快速排查未生效或不同步问题，加 `--remote` 可联网探测远端）。
+   - 状态体检与排错：`pnpm.cmd content:status`（快速排查未生效或不同步问题，加 `--remote` 可联网探测远端）；
+   - 草稿与临时目录：内容仓 `.gitignore` 忽略的路径不会被物化，也就不会进入 `src/content/**` 与构建；需要留在仓库里但不发布的笔记直接写进 `.gitignore`（同步日志会显示 `skipped N gitignored`）。
 2. **反向回写导出**：
    - 在代码仓调试或误修改了文章、图片与配置，需要反向写回外部内容仓：`pnpm.cmd content:export`。
 3. **工作区安全重置**：
@@ -70,7 +71,7 @@ description: Operate Shirone content separation and dual-repository workflows af
   > 依据 `docs/asset-pipeline.md`，`src/assets/` 和 `public/images/` 归属内容仓，而 `public/assets/` 下按业务域归档的是可重复构建的派生产物，二者绝不能混淆。
 
 - **顶层目录对等裁剪**：
-  同步裁剪只在内容仓确实拥有的顶层目录内发生。例如内容仓没有 `content/spec/` 或 `content/series/` 时，代码仓原有的 `src/content/spec/`、`src/content/series/` 将完整保留，反向导出亦同理。
+  同步裁剪只在内容仓确实拥有的顶层目录内发生。例如内容仓没有 `content/spec/` 时，代码仓原有的 `src/content/spec/` 将完整保留，反向导出亦同理。
 
 - **反向导出写入规范**：
   导出操作会直接向外部 Git 仓库写盘，因此严格拒绝 `local` 模式、`CI=true` 或浅克隆工作副本；要求内容仓工作区干净且与配置现状一致。默认绝不删除文件，只有附加 `--prune` / `--prune-config` 时才允许清理多余文件（删除前强制备份）。

@@ -20,16 +20,17 @@ test("resolvePageKey handles root deployment", () => {
 		resolvePageKey(new URL("https://example.com/albums/AcgExample/")),
 		"albums",
 	);
-	// The nav registers a `series` entry, so both the overview and every
-	// detail page must resolve to it or the item never gets aria-current.
-	assert.equal(
-		resolvePageKey(new URL("https://example.com/series/")),
-		"series",
-	);
-	assert.equal(
-		resolvePageKey(new URL("https://example.com/series/media-embeds/")),
-		"series",
-	);
+	// 系列（series）功能已停用（2026-11）：页面对应面包屑标识保留如下，恢复时取消注释
+	// // The nav registers a `series` entry, so both the overview and every
+	// // detail page must resolve to it or the item never gets aria-current.
+	// assert.equal(
+	// 	resolvePageKey(new URL("https://example.com/series/")),
+	// 	"series",
+	// );
+	// assert.equal(
+	// 	resolvePageKey(new URL("https://example.com/series/media-embeds/")),
+	// 	"series",
+	// );
 	assert.equal(
 		resolvePageKey(new URL("https://example.com/archive/?category=Guides")),
 		"categories",

@@ -100,10 +100,11 @@ export function getCategoryUrl(category: string | null): string {
 	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
 }
 
-export function getSeriesUrl(series: string): string {
-	if (!series?.trim()) return url("/series/");
-	return url(`/series/${encodeURIComponent(series.trim())}/`);
-}
+// 系列（series）功能已停用（2026-11）：系列 URL 生成保留如下，恢复时取消注释
+// export function getSeriesUrl(series: string): string {
+// 	if (!series?.trim()) return url("/series/");
+// 	return url(`/series/${encodeURIComponent(series.trim())}/`);
+// }
 
 export function getDir(path: string): string {
 	const lastSlashIndex = path.lastIndexOf("/");
