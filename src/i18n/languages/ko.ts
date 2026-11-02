@@ -37,6 +37,8 @@ export const ko: Translation = {
 	[Key.friendsApplyReciprocal]: "이미 이 사이트 링크를 추가했습니다",
 	[Key.friendsApplyOriginal]: "사이트는 창작 콘텐츠이며 합법적입니다",
 	[Key.friendsApplySubmitHint]: "제출하면 GitHub 새 Issue가 열립니다.",
+	[Key.friendsApplyMailHint]:
+		"메일 앱이 안 열리면 신청 내용을 복사해 {email}로 보내고, 제목은 '링크 신청'으로 입력하세요.",
 	[Key.friendsApplyOpenGithub]: "GitHub에서 신청",
 	[Key.friendsApplySendMail]: "메일로 보내기",
 	[Key.friendsApplyCopyBody]: "신청 내용 복사",

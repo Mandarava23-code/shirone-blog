@@ -37,6 +37,8 @@ export const tr: Translation = {
 	[Key.friendsApplyReciprocal]: "Bu siteye zaten bağlantı verdim",
 	[Key.friendsApplyOriginal]: "Sitem özgün içerikli ve yasalara uygun",
 	[Key.friendsApplySubmitHint]: "Gönderince yeni bir GitHub Issue açılır.",
+	[Key.friendsApplyMailHint]:
+		"Açılmıyor mu? Başvuruyu kopyalayıp {email} adresine “Bağlantı başvurusu” konusuyla gönderin.",
 	[Key.friendsApplyOpenGithub]: "GitHub'da gönder",
 	[Key.friendsApplySendMail]: "E-posta ile gönder",
 	[Key.friendsApplyCopyBody]: "Başvuruyu kopyala",

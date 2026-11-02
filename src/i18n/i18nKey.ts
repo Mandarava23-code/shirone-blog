@@ -35,6 +35,7 @@ enum I18nKey {
 	friendsApplyReciprocal = "friendsApplyReciprocal",
 	friendsApplyOriginal = "friendsApplyOriginal",
 	friendsApplySubmitHint = "friendsApplySubmitHint",
+	friendsApplyMailHint = "friendsApplyMailHint",
 	friendsApplyOpenGithub = "friendsApplyOpenGithub",
 	friendsApplySendMail = "friendsApplySendMail",
 	friendsApplyCopyBody = "friendsApplyCopyBody",

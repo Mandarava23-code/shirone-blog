@@ -36,6 +36,8 @@ export const th: Translation = {
 	[Key.friendsApplyReciprocal]: "ฉันได้ลิงก์มาที่เว็บไซต์นี้แล้ว",
 	[Key.friendsApplyOriginal]: "เว็บไซต์ของฉันเป็นเนื้อหาต้นฉบับและถูกกฎหมาย",
 	[Key.friendsApplySubmitHint]: "เมื่อส่งแล้วจะเปิด GitHub Issue ใหม่",
+	[Key.friendsApplyMailHint]:
+		"ไม่เปิด? คัดลอกคำขอแล้วส่งไปที่ {email} โดยใช้หัวข้อ “คำขอแลกลิงก์”",
 	[Key.friendsApplyOpenGithub]: "ส่งผ่าน GitHub",
 	[Key.friendsApplySendMail]: "ส่งทางอีเมล",
 	[Key.friendsApplyCopyBody]: "คัดลอกคำขอ",

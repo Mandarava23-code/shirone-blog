@@ -39,6 +39,8 @@ export const en: Translation = {
 		"My site is original content and legally compliant",
 	[Key.friendsApplySubmitHint]:
 		"Submitting opens a prefilled GitHub Issue in a new tab.",
+	[Key.friendsApplyMailHint]:
+		"No mail app? Copy the application and send it to {email} with the subject “Friend link application”.",
 	[Key.friendsApplyOpenGithub]: "Submit on GitHub",
 	[Key.friendsApplySendMail]: "Send by email",
 	[Key.friendsApplyCopyBody]: "Copy application",

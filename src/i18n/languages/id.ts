@@ -38,6 +38,8 @@ export const id: Translation = {
 	[Key.friendsApplyOriginal]: "Situs saya orisinal dan patuh hukum",
 	[Key.friendsApplySubmitHint]:
 		"Setelah dikirim, Issue GitHub baru akan terbuka.",
+	[Key.friendsApplyMailHint]:
+		"Tidak terbuka? Salin pengajuan lalu kirim ke {email} dengan subjek “Pengajuan tautan”.",
 	[Key.friendsApplyOpenGithub]: "Kirim di GitHub",
 	[Key.friendsApplySendMail]: "Kirim lewat email",
 	[Key.friendsApplyCopyBody]: "Salin pengajuan",

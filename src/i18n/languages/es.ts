@@ -38,6 +38,8 @@ export const es: Translation = {
 	[Key.friendsApplyOriginal]: "Mi sitio es original y cumple la ley",
 	[Key.friendsApplySubmitHint]:
 		"Al enviar se abre un Issue de GitHub ya completado.",
+	[Key.friendsApplyMailHint]:
+		"¿No se abre? Copia la solicitud y envíala a {email} con el asunto «Solicitud de enlace».",
 	[Key.friendsApplyOpenGithub]: "Enviar en GitHub",
 	[Key.friendsApplySendMail]: "Enviar por correo",
 	[Key.friendsApplyCopyBody]: "Copiar solicitud",

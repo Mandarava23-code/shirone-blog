@@ -18,6 +18,7 @@ import {
 	normalizeTags,
 	validateFriendApply,
 } from "@utils/friends-apply";
+import { prefersReducedMotion } from "@utils/motion";
 import { showSnackbar } from "@utils/snackbar";
 import type { ResolvedFriendsApply } from "@/config/friendsConfig";
 
@@ -114,6 +115,10 @@ const mailUrl = $derived(
 		: undefined,
 );
 
+const mailHint = $derived(
+	i18n(I18nKey.friendsApplyMailHint).replace("{email}", apply.email),
+);
+
 const siteInfoText = $derived(buildSiteInfoText(site, labels));
 
 const tagItems = $derived(tags.map((tag) => ({ value: tag, label: tag })));
@@ -155,13 +160,40 @@ function copyApplication(): void {
 	void copyText(buildApplyBody(draft, labels, true));
 }
 
+/** mailto 可能被系统关联到没有邮件客户端的浏览器：给一条可复制的兜底路径 */
+function onMailClick(): void {
+	if (!mailUrl) {
+		markInvalid();
+		return;
+	}
+	showSnackbar(mailHint, {
+		icon: "material-symbols:mail-outline-rounded",
+		action: {
+			label: i18n(I18nKey.friendsApplyCopyBody),
+			onClick: copyApplication,
+		},
+	});
+}
+
 function markInvalid(): void {
 	attempted = true;
 	if (!canSubmit) {
 		showSnackbar(firstError(), {
 			icon: "material-symbols:error-outline-rounded",
 		});
+		revealFirstError();
 	}
+}
+
+/** 内容区被隐藏滚动条后，校验失败要把用户滚到出错的字段 */
+function revealFirstError(): void {
+	const field = errors[0];
+	if (!field) return;
+	const id = field === "agree" ? "friend-apply-agree" : `friend-apply-${field}`;
+	document.getElementById(id)?.scrollIntoView({
+		block: "center",
+		behavior: prefersReducedMotion() ? "auto" : "smooth",
+	});
 }
 
 function handleSubmit(event: SubmitEvent): void {
@@ -172,6 +204,7 @@ function handleSubmit(event: SubmitEvent): void {
 		showSnackbar(firstError(), {
 			icon: "material-symbols:error-outline-rounded",
 		});
+		revealFirstError();
 		return;
 	}
 
@@ -189,7 +222,8 @@ function handleSubmit(event: SubmitEvent): void {
 	class="friend-apply-dialog"
 >
 	<form class="friend-apply" onsubmit={handleSubmit}>
-		<p class="friend-apply__intro">{i18n(I18nKey.friendsApplyIntro)}</p>
+		<div class="friend-apply__body">
+			<p class="friend-apply__intro">{i18n(I18nKey.friendsApplyIntro)}</p>
 
 		{#if notice}
 			<p class="friend-apply__notice">{notice}</p>
@@ -211,31 +245,35 @@ function handleSubmit(event: SubmitEvent): void {
 
 		<div class="friend-apply__fields">
 			<TextField
+				id="friend-apply-title"
 				label={i18n(I18nKey.friendsApplySiteName)}
 				variant="outlined"
 				bind:value={title}
 				error={errorFor("title")}
 			/>
 			<TextField
+				id="friend-apply-siteUrl"
 				label={i18n(I18nKey.friendsApplySiteUrl)}
 				variant="outlined"
 				bind:value={siteUrl}
 				error={errorFor("siteUrl")}
 			/>
 			<TextField
+				id="friend-apply-avatar"
 				label={i18n(I18nKey.friendsApplyAvatar)}
 				variant="outlined"
 				bind:value={avatar}
 				error={errorFor("avatar")}
 			/>
 			<TextField
+				id="friend-apply-desc"
 				label={i18n(I18nKey.friendsApplyDesc)}
 				variant="outlined"
 				bind:value={desc}
 				error={errorFor("desc")}
 			/>
 
-			<div class="friend-apply__tags">
+			<div class="friend-apply__tags friend-apply__wide">
 				<TextField
 					label={i18n(I18nKey.friendsApplyTags)}
 					variant="outlined"
@@ -249,14 +287,16 @@ function handleSubmit(event: SubmitEvent): void {
 				{/if}
 			</div>
 
-			<TextField
-				label={i18n(I18nKey.friendsApplyContact)}
-				variant="outlined"
-				bind:value={contact}
-			/>
+			<div class="friend-apply__wide">
+				<TextField
+					label={i18n(I18nKey.friendsApplyContact)}
+					variant="outlined"
+					bind:value={contact}
+				/>
+			</div>
 		</div>
 
-		<div class="friend-apply__agree">
+		<div class="friend-apply__agree" id="friend-apply-agree">
 			{#if apply.requireReciprocal}
 				<Checkbox
 					bind:checked={reciprocal}
@@ -272,54 +312,83 @@ function handleSubmit(event: SubmitEvent): void {
 			{/if}
 		</div>
 
-		<p class="friend-apply__submit-hint">
-			{i18n(I18nKey.friendsApplySubmitHint)}
-		</p>
+		</div>
 
-		<div class="friend-apply__actions">
-			{#if apply.repo}
+		<div class="friend-apply__footer">
+			<p class="friend-apply__submit-hint">
+				{i18n(I18nKey.friendsApplySubmitHint)}
+			</p>
+			<div class="friend-apply__actions">
+				{#if apply.repo}
+					<Button
+						type="submit"
+						variant="filled"
+						icon="fa7-brands:github"
+						label={i18n(I18nKey.friendsApplyOpenGithub)}
+						href={issueUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+					/>
+				{/if}
+				{#if apply.email}
+					<Button
+						variant="tonal"
+						icon="material-symbols:mail-outline-rounded"
+						label={i18n(I18nKey.friendsApplySendMail)}
+						href={mailUrl}
+						onclick={onMailClick}
+					/>
+				{/if}
 				<Button
-					type="submit"
-					variant="filled"
-					icon="fa7-brands:github"
-					label={i18n(I18nKey.friendsApplyOpenGithub)}
-					href={issueUrl}
-					target="_blank"
-					rel="noopener noreferrer"
+					variant="text"
+					icon="material-symbols:content-copy-rounded"
+					label={i18n(I18nKey.friendsApplyCopyBody)}
+					onclick={copyApplication}
 				/>
-			{/if}
-			{#if apply.email}
-				<Button
-					variant="tonal"
-					icon="material-symbols:mail-outline-rounded"
-					label={i18n(I18nKey.friendsApplySendMail)}
-					href={mailUrl}
-					onclick={() => {
-						if (!mailUrl) markInvalid();
-					}}
-				/>
-			{/if}
-			<Button
-				variant="text"
-				icon="material-symbols:content-copy-rounded"
-				label={i18n(I18nKey.friendsApplyCopyBody)}
-				onclick={copyApplication}
-			/>
+			</div>
 		</div>
 	</form>
 </Dialog>
 
 <style lang="stylus">
 :global(.friend-apply-dialog)
-	width: min(calc(100vw - 3rem), 34rem)
+	display: flex
+	flex-direction: column
+	width: min(calc(100vw - 3rem), 40rem)
+	/* Stylus 的 min() 会把 92vh/54rem 当数字比较，必须用 unquote 保留 CSS 函数 */
+	max-height: unquote("min(92vh, 54rem)")
+	overflow: hidden
+
+/* 对话框只负责定高，滚动交给表单，避免内外两层滚动条 */
+:global(.friend-apply-dialog .m3-dialog__header)
+	flex: none
+
+:global(.friend-apply-dialog .m3-dialog__content)
+	display: flex
+	flex-direction: column
+	flex: 1 1 auto
+	min-height: 0
+	overflow: hidden
 
 .friend-apply
 	display: flex
 	flex-direction: column
-	gap: 1rem
-	max-height: min(70vh, 42rem)
-	overflow-y: auto
-	padding-right: 0.25rem
+	gap: 0.75rem
+	min-height: 0
+	overflow: hidden
+
+	/* 只有内容区滚动，操作区固定在底部，不会出现滑到底一片空白 */
+	&__body
+		display: flex
+		flex-direction: column
+		gap: 1rem
+		min-height: 0
+		overflow-y: auto
+		overscroll-behavior: contain
+		/* 隐藏原生滚动条，避免和站内圆角容器割裂 */
+		scrollbar-width: none
+		&::-webkit-scrollbar
+			display: none
 
 	&__intro
 		margin: 0
@@ -358,9 +427,16 @@ function handleSubmit(event: SubmitEvent): void {
 		word-break: break-all
 
 	&__fields
-		display: flex
-		flex-direction: column
-		gap: 0.75rem
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		gap: 0.75rem 1rem
+
+	@media (max-width: 30rem)
+		&__fields
+			grid-template-columns: 1fr
+
+	&__wide
+		grid-column: 1 / -1
 
 	&__tags
 		display: flex
@@ -385,6 +461,14 @@ function handleSubmit(event: SubmitEvent): void {
 		margin: 0
 		color: var(--on-surface-variant)
 		font: var(--m3e-type-body-small)
+
+	&__footer
+		flex: none
+		display: flex
+		flex-direction: column
+		gap: 0.75rem
+		padding-top: 0.75rem
+		border-top: 1px solid var(--outline-variant)
 
 	&__actions
 		display: flex

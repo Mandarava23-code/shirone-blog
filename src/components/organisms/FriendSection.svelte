@@ -128,18 +128,18 @@ onMount(() => {
 		icon="material-symbols:handshake-outline-rounded"
 		{title}
 		{subtitle}
-	/>
-
-	{#if apply && site}
-		<div class="friend-section__apply">
-			<Button
-				variant="tonal"
-				icon="material-symbols:handshake-outline-rounded"
-				label={i18n(I18nKey.friendsApply)}
-				onclick={openApply}
-			/>
-		</div>
-	{/if}
+	>
+		{#snippet actions()}
+			{#if apply && site}
+				<Button
+					variant="tonal"
+					icon="material-symbols:handshake-outline-rounded"
+					label={i18n(I18nKey.friendsApply)}
+					onclick={openApply}
+				/>
+			{/if}
+		{/snippet}
+	</PageHeader>
 
 	{#if friends.length > 0}
 		<div class="friend-section__tools">
@@ -214,11 +214,6 @@ onMount(() => {
 
 .friend-section
 	display: block
-
-	&__apply
-		display: flex
-		justify-content: flex-end
-		padding-top: 0.75rem
 
 	&__tools
 		display: flex

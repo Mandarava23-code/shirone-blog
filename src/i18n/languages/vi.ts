@@ -37,6 +37,8 @@ export const vi: Translation = {
 	[Key.friendsApplyReciprocal]: "Tôi đã thêm liên kết tới trang này",
 	[Key.friendsApplyOriginal]: "Trang của tôi là nội dung gốc và hợp pháp",
 	[Key.friendsApplySubmitHint]: "Khi gửi, một GitHub Issue mới sẽ mở ra.",
+	[Key.friendsApplyMailHint]:
+		"Không mở? Sao chép đơn và gửi tới {email} với tiêu đề “Đơn xin kết bạn”.",
 	[Key.friendsApplyOpenGithub]: "Gửi trên GitHub",
 	[Key.friendsApplySendMail]: "Gửi qua email",
 	[Key.friendsApplyCopyBody]: "Sao chép đơn",

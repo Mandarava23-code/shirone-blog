@@ -36,6 +36,8 @@ export const zh_TW: Translation = {
 	[Key.friendsApplyReciprocal]: "我已加入本站友鏈",
 	[Key.friendsApplyOriginal]: "本站內容原創且合法",
 	[Key.friendsApplySubmitHint]: "提交後將跳轉 GitHub 建立 Issue。",
+	[Key.friendsApplyMailHint]:
+		"沒反應？複製申請內容後寄到 {email}，主旨填「友鏈申請」。",
 	[Key.friendsApplyOpenGithub]: "前往 GitHub 提交",
 	[Key.friendsApplySendMail]: "寄送郵件",
 	[Key.friendsApplyCopyBody]: "複製申請內容",

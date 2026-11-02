@@ -10,33 +10,54 @@ let {
 	title = "",
 	subtitle = "",
 	icon = "",
+	actions,
 	class: className = "",
 }: {
 	title: string;
 	subtitle?: string;
 	/** 标题左侧装饰图标（Iconify 名） */
 	icon?: string;
+	/** 标题行右侧动作区（如页面级主操作按钮） */
+	actions?: import("svelte").Snippet;
 	class?: string;
 } = $props();
 </script>
 
 <div class="page-header {className}">
-	<div class="page-header__title-row">
-		{#if icon}
-			<span class="page-header__icon" aria-hidden="true">
-				<Icon {icon} />
-			</span>
+	<div class="page-header__main">
+		<div class="page-header__title-row">
+			{#if icon}
+				<span class="page-header__icon" aria-hidden="true">
+					<Icon {icon} />
+				</span>
+			{/if}
+			<h1 class="page-header__title">{title}</h1>
+		</div>
+		{#if subtitle}
+			<p class="page-header__subtitle">{subtitle}</p>
 		{/if}
-		<h1 class="page-header__title">{title}</h1>
 	</div>
-	{#if subtitle}
-		<p class="page-header__subtitle">{subtitle}</p>
+	{#if actions}
+		<div class="page-header__actions">{@render actions()}</div>
 	{/if}
 </div>
 
 <style lang="stylus">
 .page-header
+	display: flex
+	align-items: flex-start
+	justify-content: space-between
+	gap: 1rem
 	margin-bottom: 1.5rem
+
+	&__main
+		min-width: 0
+
+	&__actions
+		display: flex
+		flex-shrink: 0
+		align-items: center
+		padding-top: 0.25rem
 
 	&__title-row
 		display: flex

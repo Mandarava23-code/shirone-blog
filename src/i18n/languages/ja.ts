@@ -37,6 +37,8 @@ export const ja: Translation = {
 	[Key.friendsApplyReciprocal]: "当サイトへのリンクを設置済みです",
 	[Key.friendsApplyOriginal]: "当サイトはオリジナルで合法な内容です",
 	[Key.friendsApplySubmitHint]: "送信すると GitHub の新規 Issue が開きます。",
+	[Key.friendsApplyMailHint]:
+		"開かない場合：申請内容をコピーして {email} へ、件名は「リンク申請」で送ってください。",
 	[Key.friendsApplyOpenGithub]: "GitHub で申請",
 	[Key.friendsApplySendMail]: "メールで送信",
 	[Key.friendsApplyCopyBody]: "申請内容をコピー",
