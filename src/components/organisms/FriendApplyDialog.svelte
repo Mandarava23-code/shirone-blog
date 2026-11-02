@@ -357,7 +357,10 @@ function handleSubmit(event: SubmitEvent): void {
 	width: min(calc(100vw - 3rem), 40rem)
 	/* Stylus 的 min() 会把 92vh/54rem 当数字比较，必须用 unquote 保留 CSS 函数 */
 	max-height: unquote("min(92vh, 54rem)")
+	/* overflow: clip 而不是 hidden：hidden 仍可被焦点滚动，勾选复选框时
+	   浏览器会把隐藏 input 滚进视野，把整个对话框顶上去、标题消失 */
 	overflow: hidden
+	overflow: clip
 
 /* 对话框只负责定高，滚动交给表单，避免内外两层滚动条 */
 :global(.friend-apply-dialog .m3-dialog__header)
@@ -383,6 +386,9 @@ function handleSubmit(event: SubmitEvent): void {
 		flex-direction: column
 		gap: 1rem
 		min-height: 0
+		/* 视口高度扣掉标题栏、内边距与底部操作区，避免对话框自身再产生滚动；
+		   极矮视口下保底 8rem，防止算出负值 */
+		max-height: unquote("max(8rem, calc(92vh - 16rem))")
 		overflow-y: auto
 		overscroll-behavior: contain
 		/* 隐藏原生滚动条，避免和站内圆角容器割裂 */
