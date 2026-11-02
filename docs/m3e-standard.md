@@ -363,4 +363,4 @@ npx playwright test -g "TOC"                   # 按标题过滤
 - 断言要点（重建 atoms 级测试时沿用）：
   - 主题引擎写入 `--mc-*` 后组件颜色带 transition，断言前必须等过渡收敛（`--m3e-duration-short` 150ms），否则会拿到中间帧的 `rgba` 混合值。
   - 交互类断言同样要等动画结束；菜单项选中后容器加 `.closed` 隐藏（项保留在 DOM，应断言容器而非计数）。
-  - 颜色一律按 token 对齐（`--secondary-container` 等），不写死具体色值（默认色相已定为 315）。
+  - 颜色一律按 token 对齐（`--secondary-container` 等），不写死具体色值（默认色相已定为 200）。
