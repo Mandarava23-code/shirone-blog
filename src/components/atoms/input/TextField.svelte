@@ -228,4 +228,8 @@ let focused = $state(false);
         margin-top: 4px
         font: var(--m3e-type-label-small)
         color: var(--error)
+
+    /* 错误提示是绝对定位的 supporting text：为它预留一行，避免压住下一个字段 */
+    &--error
+        margin-bottom: 1.25rem
 </style>

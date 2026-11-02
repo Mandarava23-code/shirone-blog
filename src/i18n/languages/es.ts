@@ -19,6 +19,40 @@ export const es: Translation = {
 	[Key.friendsCount]: "amigo",
 	[Key.friendsCounts]: "amigos",
 
+	[Key.friendsApply]: "Solicitar enlace",
+	[Key.friendsApplyTitle]: "Solicitud de enlace",
+	[Key.friendsApplyIntro]:
+		"Rellena los datos de tu sitio; al enviar se abre un Issue de GitHub ya completado y lo revisaré.",
+	[Key.friendsApplyNotice]:
+		"1. El sitio tiene un dominio estable, es accesible y de contenido original (sin agregadores ni marketing).\n2. Sin contenido ilegal y con HTTPS.\n3. Ya enlazas a este sitio.\n4. El sitio lleva al menos 60 días funcionando con estabilidad.\n5. Se proporcionan nombre, URL, avatar y descripción completos.\n6. Los sitios inactivos o sin enlace pueden retirarse.\nLa revisión tarda de 1 a 14 días; los issues aceptados se cierran. La inclusión queda a mi criterio.",
+	[Key.friendsApplyMyInfo]: "Datos de mi sitio",
+	[Key.friendsApplyCopyInfo]: "Copiar mis datos",
+	[Key.friendsApplySiteName]: "Nombre del sitio",
+	[Key.friendsApplySiteUrl]: "URL del sitio",
+	[Key.friendsApplyAvatar]: "URL del avatar (opcional)",
+	[Key.friendsApplyDesc]: "Descripción breve",
+	[Key.friendsApplyTags]: "Etiquetas (opcional)",
+	[Key.friendsApplyTagsHint]: "Separadas por comas, máximo 3",
+	[Key.friendsApplyContact]: "Contacto (opcional, solo por correo)",
+	[Key.friendsApplyReciprocal]: "Ya he añadido este sitio a mis enlaces",
+	[Key.friendsApplyOriginal]: "Mi sitio es original y cumple la ley",
+	[Key.friendsApplySubmitHint]:
+		"Al enviar se abre un Issue de GitHub ya completado.",
+	[Key.friendsApplyOpenGithub]: "Enviar en GitHub",
+	[Key.friendsApplySendMail]: "Enviar por correo",
+	[Key.friendsApplyCopyBody]: "Copiar solicitud",
+	[Key.friendsApplyErrTitle]:
+		"Escribe el nombre del sitio (máx. 40 caracteres)",
+	[Key.friendsApplyErrUrl]: "Escribe una URL válida (http:// o https://)",
+	[Key.friendsApplyErrAvatar]:
+		"La URL del avatar debe empezar por http:// o https://",
+	[Key.friendsApplyErrDesc]:
+		"Escribe una descripción breve (máx. 80 caracteres)",
+	[Key.friendsApplyErrAgree]: "Confirma los requisitos anteriores",
+	[Key.friendsApplyYes]: "Sí",
+	[Key.friendsApplyNo]: "No",
+	[Key.friendsApplyEmpty]: "Sin datos",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "Imágenes",

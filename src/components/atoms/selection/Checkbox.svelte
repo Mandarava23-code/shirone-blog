@@ -5,17 +5,21 @@
  * triState 为 true 时支持三态：false → true → null（半选，横线）。
  * 用法：<Checkbox bind:checked={flag} label="Enable" />
  *      <Checkbox bind:checked={tri} label="Mixed" triState />
+ *      <Checkbox bind:checked={flag}>{#snippet children()}自定义文案{/snippet}</Checkbox>
  */
 let {
 	checked = $bindable(false),
 	disabled = false,
 	label = "",
 	triState = false,
+	children,
 }: {
 	checked?: boolean | null;
 	disabled?: boolean;
 	label?: string;
 	triState?: boolean;
+	/** 自定义可见文案（优先于 label 文本）；传入后由内容提供无障碍名称 */
+	children?: import("svelte").Snippet;
 } = $props();
 
 let inputEl: HTMLInputElement;
@@ -44,7 +48,7 @@ function handleChange() {
         bind:this={inputEl}
         checked={checked === true}
         {disabled}
-        aria-label={label}
+        aria-label={children ? undefined : label || undefined}
         onchange={handleChange}
         class="m3-checkbox__input"
     />
@@ -56,13 +60,26 @@ function handleChange() {
             <path d="M5 10 H15"></path>
         </svg>
     </span>
+    {#if children}
+        <span class="m3-checkbox__label">{@render children()}</span>
+    {:else if label}
+        <span class="m3-checkbox__label">{label}</span>
+    {/if}
 </label>
 
 <style lang="stylus">
 .m3-checkbox
     display: inline-flex
+    align-items: flex-start
+    gap: 0.5rem
     cursor: pointer
     -webkit-tap-highlight-color: transparent
+
+    &__label
+        color: var(--on-surface)
+        font: var(--m3e-type-body-medium)
+        line-height: 1.4
+        padding-top: 1px
 
     &.disabled
         opacity: 0.38

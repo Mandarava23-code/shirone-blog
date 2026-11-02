@@ -19,6 +19,38 @@ export const ko: Translation = {
 	[Key.friendsCount]: "개의 친구 링크",
 	[Key.friendsCounts]: "개의 친구 링크",
 
+	[Key.friendsApply]: "링크 신청",
+	[Key.friendsApplyTitle]: "링크 신청",
+	[Key.friendsApplyIntro]:
+		"사이트 정보를 입력하면 미리 채워진 GitHub Issue가 열리며, 확인 후 등록합니다.",
+	[Key.friendsApplyNotice]:
+		"1. 안정적인 도메인으로 정상 접속되며 창작 글이 중심이어야 합니다(수집/마케팅 사이트 불가).\n2. 불법·유해 콘텐츠가 없고 HTTPS를 사용해야 합니다.\n3. 본 사이트 링크를 이미 추가한 상태여야 합니다.\n4. 사이트가 60일 이상 안정적으로 운영되어야 합니다.\n5. 사이트 이름, 주소, 아바타, 설명을 모두 제공해야 합니다.\n6. 장기간 미업데이트 또는 링크 삭제 시 목록에서 제외됩니다.\n검토는 1~14일 소요되며 승인 후 issue를 닫습니다. 최종 수록 여부는 운영자가 결정합니다.",
+	[Key.friendsApplyMyInfo]: "내 사이트 정보",
+	[Key.friendsApplyCopyInfo]: "내 정보 복사",
+	[Key.friendsApplySiteName]: "사이트 이름",
+	[Key.friendsApplySiteUrl]: "사이트 주소",
+	[Key.friendsApplyAvatar]: "아바타 주소(선택)",
+	[Key.friendsApplyDesc]: "한 줄 소개",
+	[Key.friendsApplyTags]: "태그(선택)",
+	[Key.friendsApplyTagsHint]: "쉼표로 구분, 최대 3개",
+	[Key.friendsApplyContact]: "연락처(선택, 메일 전용)",
+	[Key.friendsApplyReciprocal]: "이미 이 사이트 링크를 추가했습니다",
+	[Key.friendsApplyOriginal]: "사이트는 창작 콘텐츠이며 합법적입니다",
+	[Key.friendsApplySubmitHint]: "제출하면 GitHub 새 Issue가 열립니다.",
+	[Key.friendsApplyOpenGithub]: "GitHub에서 신청",
+	[Key.friendsApplySendMail]: "메일로 보내기",
+	[Key.friendsApplyCopyBody]: "신청 내용 복사",
+	[Key.friendsApplyErrTitle]: "사이트 이름을 입력하세요(40자 이내)",
+	[Key.friendsApplyErrUrl]:
+		"올바른 사이트 주소를 입력하세요(http:// 또는 https://)",
+	[Key.friendsApplyErrAvatar]:
+		"아바타 주소는 http:// 또는 https://로 시작해야 합니다",
+	[Key.friendsApplyErrDesc]: "한 줄 소개를 입력하세요(80자 이내)",
+	[Key.friendsApplyErrAgree]: "위 요구 사항을 확인해 주세요",
+	[Key.friendsApplyYes]: "예",
+	[Key.friendsApplyNo]: "아니요",
+	[Key.friendsApplyEmpty]: "미입력",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "이미지 호스트",

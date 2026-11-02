@@ -1,4 +1,5 @@
 <script lang="ts">
+import Button from "@components/atoms/action/Button.svelte";
 import Chips from "@components/atoms/action/Chips.svelte";
 import Card from "@components/atoms/display/Card.svelte";
 import LoadingIndicator from "@components/atoms/feedback/LoadingIndicator.svelte";
@@ -8,18 +9,41 @@ import PageHeader from "@components/molecules/PageHeader.svelte";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
+import type { FriendApplySiteInfo } from "@utils/friends-apply";
 import { onMount } from "svelte";
+import type { ResolvedFriendsApply } from "../../config/friendsConfig";
 import type { FriendItem } from "../../data/friends";
 
 let {
 	friends = [] as FriendItem[],
 	title = i18n(I18nKey.friends),
 	subtitle = i18n(I18nKey.friendsBanner),
+	apply = null,
+	site = null,
+	notice = "",
 }: {
 	friends?: FriendItem[];
 	title?: string;
 	subtitle?: string;
+	/** 申请通道；null 表示未启用，入口与对话框都不会渲染 */
+	apply?: ResolvedFriendsApply | null;
+	/** 本站信息，供申请者复制 */
+	site?: FriendApplySiteInfo | null;
+	notice?: string;
 } = $props();
+
+/** 申请对话框按需加载：未启用时完全不在初始 bundle 里 */
+type FriendApplyDialogModule = typeof import("./FriendApplyDialog.svelte");
+let ApplyDialog = $state<FriendApplyDialogModule["default"] | null>(null);
+let applyOpen = $state(false);
+
+async function openApply(): Promise<void> {
+	if (!ApplyDialog) {
+		const module = await import("./FriendApplyDialog.svelte");
+		ApplyDialog = module.default;
+	}
+	applyOpen = true;
+}
 
 let query = $state("");
 let selectedTag = $state("");
@@ -106,6 +130,17 @@ onMount(() => {
 		{subtitle}
 	/>
 
+	{#if apply && site}
+		<div class="friend-section__apply">
+			<Button
+				variant="tonal"
+				icon="material-symbols:handshake-outline-rounded"
+				label={i18n(I18nKey.friendsApply)}
+				onclick={openApply}
+			/>
+		</div>
+	{/if}
+
 	{#if friends.length > 0}
 		<div class="friend-section__tools">
 			<div class="friend-section__search">
@@ -170,11 +205,20 @@ onMount(() => {
 	{/if}
 </Card>
 
+{#if applyOpen && ApplyDialog && apply && site}
+	<ApplyDialog {apply} {site} {notice} onclose={() => (applyOpen = false)} />
+{/if}
+
 <style lang="stylus">
 @import "../../styles/breakpoints.styl"
 
 .friend-section
 	display: block
+
+	&__apply
+		display: flex
+		justify-content: flex-end
+		padding-top: 0.75rem
 
 	&__tools
 		display: flex

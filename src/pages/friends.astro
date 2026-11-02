@@ -2,8 +2,10 @@
 import FriendSection from "@components/organisms/FriendSection.svelte";
 import I18nKey from "@i18n/i18nKey";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { friendsConfig } from "@/config/friendsConfig";
 import { resolveI18nText } from "@utils/i18n-utils";
+import { friendsConfig, resolveFriendsApply } from "@/config/friendsConfig";
+import { profileConfig } from "@/config/profileConfig";
+import { siteConfig } from "@/config/siteConfig";
 import { getFriendsList } from "../data/friends";
 
 if (!friendsConfig.enable) {
@@ -11,9 +13,62 @@ if (!friendsConfig.enable) {
 }
 
 const pageTitle = resolveI18nText(friendsConfig.title, I18nKey.friends);
-const pageDescription = resolveI18nText(friendsConfig.description, I18nKey.friendsBanner);
+const pageDescription = resolveI18nText(
+	friendsConfig.description,
+	I18nKey.friendsBanner,
+);
+
+// 申请通道：配置缺失/非法时 resolveFriendsApply 返回 null，页面完全不渲染入口
+const applyOptions = resolveFriendsApply(friendsConfig.apply);
+const applyNotice = resolveI18nText(
+	friendsConfig.apply?.notice,
+	I18nKey.friendsApplyNotice,
+);
+
+// 「我的站点信息」供申请者一键复制。
+// 头像必须是稳定公开 URL：src 资源在构建后带 hash，重建会失效，因此默认回退到
+// public 下的 favicon；需要自己的头像时在 friendsConfig.apply.me.avatar 覆盖。
+const avatarModules = import.meta.glob<string>(
+	"../assets/**/*.{png,jpg,jpeg,webp,avif,svg}",
+	{ eager: true, query: "?url", import: "default" },
+);
+
+function toPublicUrl(raw: string): string {
+	const value = raw.trim();
+	if (!value) return "";
+	if (/^(?:https?:)?\/\//i.test(value) || value.startsWith("data:")) {
+		return value;
+	}
+	if (value.startsWith("/")) {
+		return new URL(value, siteConfig.site).href;
+	}
+	const emitted = avatarModules[`../${value}`];
+	// 开发服务器给的是 /src/... 这类只在本机有效的地址，不能当公开 URL 复制出去
+	if (!emitted?.startsWith("/_astro/")) {
+		return "";
+	}
+	return new URL(emitted, siteConfig.site).href;
+}
+
+const siteInfo = {
+	name: friendsConfig.apply?.me?.name || profileConfig.name,
+	url: friendsConfig.apply?.me?.url || siteConfig.site,
+	avatar:
+		friendsConfig.apply?.me?.avatar ||
+		toPublicUrl(profileConfig.avatar ?? "") ||
+		toPublicUrl(siteConfig.favicon?.[0]?.src ?? "/favicon.ico"),
+	desc: friendsConfig.apply?.me?.desc || siteConfig.subtitle || "",
+};
 ---
 
 <MainGridLayout title={pageTitle} description={pageDescription} page="friends">
-    <FriendSection friends={getFriendsList()} title={pageTitle} subtitle={pageDescription} client:visible></FriendSection>
+    <FriendSection
+        friends={getFriendsList()}
+        title={pageTitle}
+        subtitle={pageDescription}
+        apply={applyOptions}
+        site={siteInfo}
+        notice={applyNotice}
+        client:visible
+    />
 </MainGridLayout>

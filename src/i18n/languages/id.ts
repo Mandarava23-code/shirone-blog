@@ -19,6 +19,37 @@ export const id: Translation = {
 	[Key.friendsCount]: "teman",
 	[Key.friendsCounts]: "teman",
 
+	[Key.friendsApply]: "Ajukan tautan",
+	[Key.friendsApplyTitle]: "Pengajuan tautan",
+	[Key.friendsApplyIntro]:
+		"Isi data situs Anda; Issue GitHub akan terbuka dengan isian otomatis, lalu saya tinjau.",
+	[Key.friendsApplyNotice]:
+		"1. Domain stabil, situs dapat diakses, dan berisi konten orisinal (bukan agregator/pemasaran).\n2. Tidak ada konten ilegal dan situs memakai HTTPS.\n3. Anda sudah memasang tautan ke situs ini.\n4. Situs sudah berjalan stabil minimal 60 hari.\n5. Nama, URL, avatar, dan deskripsi lengkap disertakan.\n6. Situs yang tidak aktif atau mencabut tautan dapat dihapus.\nPeninjauan 1–14 hari; issue yang disetujui akan ditutup. Keputusan akhir ada di pemilik situs.",
+	[Key.friendsApplyMyInfo]: "Data situs saya",
+	[Key.friendsApplyCopyInfo]: "Salin data saya",
+	[Key.friendsApplySiteName]: "Nama situs",
+	[Key.friendsApplySiteUrl]: "URL situs",
+	[Key.friendsApplyAvatar]: "URL avatar (opsional)",
+	[Key.friendsApplyDesc]: "Deskripsi singkat",
+	[Key.friendsApplyTags]: "Tag (opsional)",
+	[Key.friendsApplyTagsHint]: "Pisahkan dengan koma, maksimal 3",
+	[Key.friendsApplyContact]: "Kontak (opsional, hanya email)",
+	[Key.friendsApplyReciprocal]: "Saya sudah menautkan situs ini",
+	[Key.friendsApplyOriginal]: "Situs saya orisinal dan patuh hukum",
+	[Key.friendsApplySubmitHint]:
+		"Setelah dikirim, Issue GitHub baru akan terbuka.",
+	[Key.friendsApplyOpenGithub]: "Kirim di GitHub",
+	[Key.friendsApplySendMail]: "Kirim lewat email",
+	[Key.friendsApplyCopyBody]: "Salin pengajuan",
+	[Key.friendsApplyErrTitle]: "Isi nama situs (maks. 40 karakter)",
+	[Key.friendsApplyErrUrl]: "Isi URL situs yang valid (http:// atau https://)",
+	[Key.friendsApplyErrAvatar]: "URL avatar harus diawali http:// atau https://",
+	[Key.friendsApplyErrDesc]: "Isi deskripsi singkat (maks. 80 karakter)",
+	[Key.friendsApplyErrAgree]: "Konfirmasi persyaratan di atas",
+	[Key.friendsApplyYes]: "Ya",
+	[Key.friendsApplyNo]: "Tidak",
+	[Key.friendsApplyEmpty]: "Tidak diisi",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "Hosting Gambar",

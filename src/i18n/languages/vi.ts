@@ -19,6 +19,37 @@ export const vi: Translation = {
 	[Key.friendsCount]: "liên kết bạn bè",
 	[Key.friendsCounts]: "liên kết bạn bè",
 
+	[Key.friendsApply]: "Xin kết bạn",
+	[Key.friendsApplyTitle]: "Đơn xin kết bạn",
+	[Key.friendsApplyIntro]:
+		"Điền thông tin trang của bạn; một GitHub Issue đã điền sẵn sẽ mở ra để tôi xem xét.",
+	[Key.friendsApplyNotice]:
+		"1. Tên miền ổn định, trang truy cập được và chủ yếu là nội dung gốc (không phải site tổng hợp/quảng cáo).\n2. Không có nội dung vi phạm pháp luật và trang dùng HTTPS.\n3. Bạn đã thêm liên kết tới trang này.\n4. Trang đã hoạt động ổn định ít nhất 60 ngày.\n5. Cung cấp đầy đủ tên, URL, ảnh đại diện và mô tả.\n6. Trang ngừng cập nhật hoặc gỡ liên kết có thể bị xoá.\nDuyệt trong 1–14 ngày; issue được chấp nhận sẽ bị đóng. Việc chấp nhận do chủ trang quyết định.",
+	[Key.friendsApplyMyInfo]: "Thông tin trang của tôi",
+	[Key.friendsApplyCopyInfo]: "Sao chép thông tin của tôi",
+	[Key.friendsApplySiteName]: "Tên trang",
+	[Key.friendsApplySiteUrl]: "URL trang",
+	[Key.friendsApplyAvatar]: "URL ảnh đại diện (không bắt buộc)",
+	[Key.friendsApplyDesc]: "Mô tả ngắn",
+	[Key.friendsApplyTags]: "Thẻ (không bắt buộc)",
+	[Key.friendsApplyTagsHint]: "Cách nhau bằng dấu phẩy, tối đa 3",
+	[Key.friendsApplyContact]: "Liên hệ (không bắt buộc, chỉ qua email)",
+	[Key.friendsApplyReciprocal]: "Tôi đã thêm liên kết tới trang này",
+	[Key.friendsApplyOriginal]: "Trang của tôi là nội dung gốc và hợp pháp",
+	[Key.friendsApplySubmitHint]: "Khi gửi, một GitHub Issue mới sẽ mở ra.",
+	[Key.friendsApplyOpenGithub]: "Gửi trên GitHub",
+	[Key.friendsApplySendMail]: "Gửi qua email",
+	[Key.friendsApplyCopyBody]: "Sao chép đơn",
+	[Key.friendsApplyErrTitle]: "Nhập tên trang (tối đa 40 ký tự)",
+	[Key.friendsApplyErrUrl]: "Nhập URL hợp lệ (http:// hoặc https://)",
+	[Key.friendsApplyErrAvatar]:
+		"URL ảnh đại diện phải bắt đầu bằng http:// hoặc https://",
+	[Key.friendsApplyErrDesc]: "Nhập mô tả ngắn (tối đa 80 ký tự)",
+	[Key.friendsApplyErrAgree]: "Vui lòng xác nhận các yêu cầu trên",
+	[Key.friendsApplyYes]: "Có",
+	[Key.friendsApplyNo]: "Không",
+	[Key.friendsApplyEmpty]: "Không có",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "Lưu trữ ảnh",

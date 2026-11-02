@@ -537,7 +537,7 @@
 			"tier": "B",
 			"source": "移植",
 			"landed": false,
-			"note": "设置面板扩展"
+			"note": "支持 label / children 可见文案（友链申请表单已落地）"
 		},
 		{
 			"name": "RadioButton",

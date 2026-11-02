@@ -19,6 +19,38 @@ export const ja: Translation = {
 	[Key.friendsCount]: "件の友達リンク",
 	[Key.friendsCounts]: "件の友達リンク",
 
+	[Key.friendsApply]: "リンク申請",
+	[Key.friendsApplyTitle]: "リンク申請",
+	[Key.friendsApplyIntro]:
+		"サイト情報を入力すると、内容が入った GitHub Issue が開きます。確認後に掲載します。",
+	[Key.friendsApplyNotice]:
+		"1. 安定したドメインで正常に閲覧でき、オリジナル記事が中心であること（収集サイト・営業サイトは不可）。\n2. 違法・公序良俗に反する内容がなく、HTTPS を使用していること。\n3. 当サイトへのリンクを既に設置していること。\n4. サイトが60日以上安定して運営されていること。\n5. サイト名・URL・アバター・説明をすべて記入すること。\n6. 長期間更新がない、リンクを外したサイトは掲載を終了します。\n審査は1〜14日、承認後は issue をクローズします。最終的な掲載可否は当サイトが判断します。",
+	[Key.friendsApplyMyInfo]: "当サイトの情報",
+	[Key.friendsApplyCopyInfo]: "当サイトの情報をコピー",
+	[Key.friendsApplySiteName]: "サイト名",
+	[Key.friendsApplySiteUrl]: "サイトURL",
+	[Key.friendsApplyAvatar]: "アバターURL（任意）",
+	[Key.friendsApplyDesc]: "ひとこと説明",
+	[Key.friendsApplyTags]: "タグ（任意）",
+	[Key.friendsApplyTagsHint]: "カンマ区切り、最大3個",
+	[Key.friendsApplyContact]: "連絡先（任意・メールのみ）",
+	[Key.friendsApplyReciprocal]: "当サイトへのリンクを設置済みです",
+	[Key.friendsApplyOriginal]: "当サイトはオリジナルで合法な内容です",
+	[Key.friendsApplySubmitHint]: "送信すると GitHub の新規 Issue が開きます。",
+	[Key.friendsApplyOpenGithub]: "GitHub で申請",
+	[Key.friendsApplySendMail]: "メールで送信",
+	[Key.friendsApplyCopyBody]: "申請内容をコピー",
+	[Key.friendsApplyErrTitle]: "サイト名を入力してください（40文字以内）",
+	[Key.friendsApplyErrUrl]:
+		"有効なサイトURLを入力してください（http:// または https://）",
+	[Key.friendsApplyErrAvatar]:
+		"アバターURLは http:// または https:// で始めてください",
+	[Key.friendsApplyErrDesc]: "ひとこと説明を入力してください（80文字以内）",
+	[Key.friendsApplyErrAgree]: "上記の要件を確認してください",
+	[Key.friendsApplyYes]: "はい",
+	[Key.friendsApplyNo]: "いいえ",
+	[Key.friendsApplyEmpty]: "未入力",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "画像ホスト",

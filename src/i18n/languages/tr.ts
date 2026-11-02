@@ -19,6 +19,38 @@ export const tr: Translation = {
 	[Key.friendsCount]: "arkadaş",
 	[Key.friendsCounts]: "arkadaş",
 
+	[Key.friendsApply]: "Bağlantı iste",
+	[Key.friendsApplyTitle]: "Bağlantı başvurusu",
+	[Key.friendsApplyIntro]:
+		"Sitenizin bilgilerini girin; önceden doldurulmuş bir GitHub Issue açılır, ben de inceleyeyim.",
+	[Key.friendsApplyNotice]:
+		"1. Alan adı istikrarlı, site erişilebilir ve özgün içerikli olmalı (derleme/pazarlama siteleri kabul edilmez).\n2. Yasa dışı içerik bulunmamalı ve site HTTPS kullanmalı.\n3. Bu siteye zaten bağlantı verilmiş olmalı.\n4. Site en az 60 gündür sorunsuz çalışıyor olmalı.\n5. Ad, URL, avatar ve açıklama eksiksiz verilmeli.\n6. Güncellenmeyen veya bağlantıyı kaldıran siteler kaldırılabilir.\nİnceleme 1–14 gün sürer; onaylanan issue'lar kapatılır. Kabul edilip edilmemesi site sahibine bağlıdır.",
+	[Key.friendsApplyMyInfo]: "Sitemin bilgileri",
+	[Key.friendsApplyCopyInfo]: "Bilgilerimi kopyala",
+	[Key.friendsApplySiteName]: "Site adı",
+	[Key.friendsApplySiteUrl]: "Site adresi",
+	[Key.friendsApplyAvatar]: "Avatar adresi (isteğe bağlı)",
+	[Key.friendsApplyDesc]: "Kısa açıklama",
+	[Key.friendsApplyTags]: "Etiketler (isteğe bağlı)",
+	[Key.friendsApplyTagsHint]: "Virgülle ayırın, en fazla 3",
+	[Key.friendsApplyContact]: "İletişim (isteğe bağlı, yalnızca e-posta)",
+	[Key.friendsApplyReciprocal]: "Bu siteye zaten bağlantı verdim",
+	[Key.friendsApplyOriginal]: "Sitem özgün içerikli ve yasalara uygun",
+	[Key.friendsApplySubmitHint]: "Gönderince yeni bir GitHub Issue açılır.",
+	[Key.friendsApplyOpenGithub]: "GitHub'da gönder",
+	[Key.friendsApplySendMail]: "E-posta ile gönder",
+	[Key.friendsApplyCopyBody]: "Başvuruyu kopyala",
+	[Key.friendsApplyErrTitle]: "Site adını girin (en fazla 40 karakter)",
+	[Key.friendsApplyErrUrl]:
+		"Geçerli bir site adresi girin (http:// veya https://)",
+	[Key.friendsApplyErrAvatar]:
+		"Avatar adresi http:// veya https:// ile başlamalı",
+	[Key.friendsApplyErrDesc]: "Kısa açıklama girin (en fazla 80 karakter)",
+	[Key.friendsApplyErrAgree]: "Lütfen yukarıdaki koşulları onaylayın",
+	[Key.friendsApplyYes]: "Evet",
+	[Key.friendsApplyNo]: "Hayır",
+	[Key.friendsApplyEmpty]: "Belirtilmedi",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "Görsel Hosting",

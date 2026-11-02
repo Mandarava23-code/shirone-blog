@@ -19,6 +19,39 @@ export const en: Translation = {
 	[Key.friendsCount]: "friend",
 	[Key.friendsCounts]: "friends",
 
+	[Key.friendsApply]: "Apply for a link",
+	[Key.friendsApplyTitle]: "Friend link application",
+	[Key.friendsApplyIntro]:
+		"Fill in your site details — submitting opens a prefilled GitHub Issue for review.",
+	[Key.friendsApplyNotice]:
+		"1. The site has a stable domain and is reachable; original content only — no scrapers or marketing sites.\n2. No illegal content, and the site uses HTTPS.\n3. You already link back to this site.\n4. The site has been running smoothly for at least 60 days.\n5. Complete name, URL, avatar and description are provided.\n6. Sites that stop updating or drop the link may be removed.\nReview takes 1–14 days; accepted issues are closed. Inclusion is at my discretion.",
+	[Key.friendsApplyMyInfo]: "My site details",
+	[Key.friendsApplyCopyInfo]: "Copy my details",
+	[Key.friendsApplySiteName]: "Site name",
+	[Key.friendsApplySiteUrl]: "Site URL",
+	[Key.friendsApplyAvatar]: "Avatar URL (optional)",
+	[Key.friendsApplyDesc]: "One-line description",
+	[Key.friendsApplyTags]: "Tags (optional)",
+	[Key.friendsApplyTagsHint]: "Separate with commas, up to 3",
+	[Key.friendsApplyContact]: "Contact (optional, email only)",
+	[Key.friendsApplyReciprocal]: "I have already linked to this site",
+	[Key.friendsApplyOriginal]:
+		"My site is original content and legally compliant",
+	[Key.friendsApplySubmitHint]:
+		"Submitting opens a prefilled GitHub Issue in a new tab.",
+	[Key.friendsApplyOpenGithub]: "Submit on GitHub",
+	[Key.friendsApplySendMail]: "Send by email",
+	[Key.friendsApplyCopyBody]: "Copy application",
+	[Key.friendsApplyErrTitle]: "Enter a site name (up to 40 characters)",
+	[Key.friendsApplyErrUrl]: "Enter a valid site URL (http:// or https://)",
+	[Key.friendsApplyErrAvatar]: "Avatar URL must start with http:// or https://",
+	[Key.friendsApplyErrDesc]:
+		"Enter a one-line description (up to 80 characters)",
+	[Key.friendsApplyErrAgree]: "Please confirm the requirements above",
+	[Key.friendsApplyYes]: "Yes",
+	[Key.friendsApplyNo]: "No",
+	[Key.friendsApplyEmpty]: "Not provided",
+
 	[Key.travelling]: "Travelling",
 
 	[Key.imageHost]: "Image Host",
